@@ -1,32 +1,24 @@
 import { Brain, Microscope, Lightbulb, Code } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
-
 const About = () => {
-  const expertise = [
-    {
-      icon: Brain,
-      title: "Research & Analysis",
-      description: "Deep dive into complex problems with systematic research methodologies and data-driven insights."
-    },
-    {
-      icon: Microscope,
-      title: "Scientific Innovation",
-      description: "Translating scientific discoveries into practical applications and breakthrough technologies."
-    },
-    {
-      icon: Lightbulb,
-      title: "Creative Problem Solving",
-      description: "Developing novel solutions through interdisciplinary thinking and innovative approaches."
-    },
-    {
-      icon: Code,
-      title: "Engineering Excellence",
-      description: "Building robust, scalable systems with cutting-edge technologies and best practices."
-    }
-  ];
-
-  return (
-    <section id="about" className="py-20 bg-background">
+  const expertise = [{
+    icon: Brain,
+    title: "Research & Analysis",
+    description: "Deep dive into complex problems with systematic research methodologies and data-driven insights."
+  }, {
+    icon: Microscope,
+    title: "Scientific Innovation",
+    description: "Translating scientific discoveries into practical applications and breakthrough technologies."
+  }, {
+    icon: Lightbulb,
+    title: "Creative Problem Solving",
+    description: "Developing novel solutions through interdisciplinary thinking and innovative approaches."
+  }, {
+    icon: Code,
+    title: "Engineering Excellence",
+    description: "Building robust, scalable systems with cutting-edge technologies and best practices."
+  }];
+  return <section id="about" className="py-20 bg-background">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
@@ -40,8 +32,7 @@ const About = () => {
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
-          {expertise.map((item, index) => (
-            <Card key={index} className="shadow-card hover:shadow-elegant transition-shadow duration-300">
+          {expertise.map((item, index) => <Card key={index} className="shadow-card hover:shadow-elegant transition-shadow duration-300">
               <CardContent className="p-6 text-center">
                 <div className="w-12 h-12 bg-gradient-primary rounded-lg flex items-center justify-center mx-auto mb-4">
                   <item.icon className="h-6 w-6 text-white" />
@@ -53,8 +44,7 @@ const About = () => {
                   {item.description}
                 </p>
               </CardContent>
-            </Card>
-          ))}
+            </Card>)}
         </div>
 
         <div className="bg-gradient-subtle rounded-3xl p-8 md:p-12">
@@ -92,7 +82,7 @@ const About = () => {
                 </div>
                 <div className="text-center">
                   <div className="text-2xl font-bold text-primary">15+</div>
-                  <div className="text-sm text-muted-foreground">Publications</div>
+                  <div className="text-sm text-muted-foreground">Active Research Themes</div>
                 </div>
                 <div className="text-center">
                   <div className="text-2xl font-bold text-primary">8+</div>
@@ -107,8 +97,6 @@ const About = () => {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default About;
