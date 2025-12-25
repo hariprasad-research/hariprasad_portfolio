@@ -86,11 +86,11 @@ const About = () => {
                 </div>
                 <div className="text-center">
                   <div className="text-2xl font-bold text-primary">8+</div>
-                  <div className="text-sm text-muted-foreground">Years Experience</div>
+                  <div className="text-sm text-muted-foreground">Prototypes & Experiments</div>
                 </div>
                 <div className="text-center">
                   <div className="text-2xl font-bold text-primary">25+</div>
-                  <div className="text-sm text-muted-foreground">Collaborations</div>
+                  <div className="text-sm text-muted-foreground">Hackathons & Exhibitions</div>
                 </div>
               </div>
             </div>
