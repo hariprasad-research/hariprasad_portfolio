@@ -75,7 +75,7 @@ const About = () => {
             </div>
             <div className="bg-card rounded-2xl p-6 shadow-card">
               <h4 className="text-lg font-semibold text-foreground mb-4">Key Metrics</h4>
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
                 <div className="text-center">
                   <div className="text-2xl font-bold text-primary">50+</div>
                   <div className="text-sm text-muted-foreground">Projects Completed</div>
@@ -91,6 +91,14 @@ const About = () => {
                 <div className="text-center">
                   <div className="text-2xl font-bold text-primary">25+</div>
                   <div className="text-sm text-muted-foreground">Hackathons & Exhibitions</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-2xl font-bold text-primary">12+</div>
+                  <div className="text-sm text-muted-foreground">Publications & Papers</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-2xl font-bold text-primary">5+</div>
+                  <div className="text-sm text-muted-foreground">Patents Filed</div>
                 </div>
               </div>
             </div>
