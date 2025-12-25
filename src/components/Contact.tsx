@@ -72,15 +72,15 @@ const Contact = () => {
                 <div className="grid grid-cols-2 gap-4 text-sm">
                   <div className="space-y-2">
                     <div className="text-muted-foreground">• Embedded Systems & Electronics</div>
-                    <div className="text-muted-foreground">• Data Science</div>
-                    <div className="text-muted-foreground">• Quantum Computing</div>
-                    <div className="text-muted-foreground">• IoT Systems</div>
+                    <div className="text-muted-foreground">• Space Systems (Ground & Concepts) </div>
+                    <div className="text-muted-foreground">• Prototyping & Experimental Research</div>
+                    <div className="text-muted-foreground">• Sustainable Materials & Eco-Tech</div>
                   </div>
                   <div className="space-y-2">
-                    <div className="text-muted-foreground">• Distributed Systems</div>
-                    <div className="text-muted-foreground">• Cybersecurity</div>
-                    <div className="text-muted-foreground">• Biomedical Informatics</div>
-                    <div className="text-muted-foreground">• Autonomous Systems</div>
+                    <div className="text-muted-foreground">• IoT & Automation Logic</div>
+                    <div className="text-muted-foreground">• Web-Based System Interfaces</div>
+                    <div className="text-muted-foreground">• Systems Thinking & Problem Solving</div>
+                    <div className="text-muted-foreground">• Human Performance & Discipline</div>
                   </div>
                 </div>
               </CardContent>
