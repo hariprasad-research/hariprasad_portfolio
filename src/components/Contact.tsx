@@ -4,41 +4,34 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
-
 const Contact = () => {
-  const { toast } = useToast();
-
+  const {
+    toast
+  } = useToast();
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     toast({
       title: "Message sent!",
-      description: "Thank you for your message. I'll get back to you soon.",
+      description: "Thank you for your message. I'll get back to you soon."
     });
   };
-
-  const contactInfo = [
-    {
-      icon: Mail,
-      label: "Email",
-      value: "contact@researcher.dev",
-      href: "mailto:contact@researcher.dev"
-    },
-    {
-      icon: Phone,
-      label: "Phone",
-      value: "+1 (555) 123-4567",
-      href: "tel:+15551234567"
-    },
-    {
-      icon: MapPin,
-      label: "Location",
-      value: "San Francisco, CA",
-      href: "#"
-    }
-  ];
-
-  return (
-    <section id="contact" className="py-20 bg-background">
+  const contactInfo = [{
+    icon: Mail,
+    label: "Email",
+    value: "contact@researcher.dev",
+    href: "mailto:contact@researcher.dev"
+  }, {
+    icon: Phone,
+    label: "Phone",
+    value: "+1 (555) 123-4567",
+    href: "tel:+15551234567"
+  }, {
+    icon: MapPin,
+    label: "Location",
+    value: "San Francisco, CA",
+    href: "#"
+  }];
+  return <section id="contact" className="py-20 bg-background">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
@@ -57,22 +50,17 @@ const Contact = () => {
                 Get in Touch
               </h3>
               <div className="space-y-4">
-                {contactInfo.map((item, index) => (
-                  <div key={index} className="flex items-center space-x-4">
+                {contactInfo.map((item, index) => <div key={index} className="flex items-center space-x-4">
                     <div className="w-12 h-12 bg-gradient-primary rounded-lg flex items-center justify-center">
                       <item.icon className="h-5 w-5 text-white" />
                     </div>
                     <div>
                       <div className="text-sm text-muted-foreground">{item.label}</div>
-                      <a 
-                        href={item.href} 
-                        className="text-foreground hover:text-primary transition-colors"
-                      >
+                      <a href={item.href} className="text-foreground hover:text-primary transition-colors">
                         {item.value}
                       </a>
                     </div>
-                  </div>
-                ))}
+                  </div>)}
               </div>
             </div>
 
@@ -83,7 +71,7 @@ const Contact = () => {
               <CardContent>
                 <div className="grid grid-cols-2 gap-4 text-sm">
                   <div className="space-y-2">
-                    <div className="text-muted-foreground">• Machine Learning</div>
+                    <div className="text-muted-foreground">• Embedded Systems & Electronics</div>
                     <div className="text-muted-foreground">• Data Science</div>
                     <div className="text-muted-foreground">• Quantum Computing</div>
                     <div className="text-muted-foreground">• IoT Systems</div>
@@ -138,11 +126,7 @@ const Contact = () => {
                   <label className="text-sm font-medium text-foreground block mb-2">
                     Message
                   </label>
-                  <Textarea 
-                    placeholder="Tell me about your project or research interests..."
-                    className="min-h-[120px]"
-                    required 
-                  />
+                  <Textarea placeholder="Tell me about your project or research interests..." className="min-h-[120px]" required />
                 </div>
                 
                 <Button type="submit" className="w-full bg-gradient-primary hover:opacity-90">
@@ -154,8 +138,6 @@ const Contact = () => {
           </Card>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default Contact;
