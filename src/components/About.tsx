@@ -77,23 +77,23 @@ const About = () => {
               <h4 className="text-lg font-semibold text-foreground mb-4">Key Metrics</h4>
               <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
                 <div className="text-center">
-                  <div className="text-2xl font-bold text-primary">50+</div>
+                  <div className="text-2xl font-bold text-primary">30+</div>
                   <div className="text-sm text-muted-foreground">Projects Completed</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-2xl font-bold text-primary">15+</div>
+                  <div className="text-2xl font-bold text-primary">5+</div>
                   <div className="text-sm text-muted-foreground">Active Research Themes</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-2xl font-bold text-primary">8+</div>
+                  <div className="text-2xl font-bold text-primary">20+</div>
                   <div className="text-sm text-muted-foreground">Prototypes & Experiments</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-2xl font-bold text-primary">25+</div>
+                  <div className="text-2xl font-bold text-primary">8+</div>
                   <div className="text-sm text-muted-foreground">Hackathons & Exhibitions</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-2xl font-bold text-primary">12+</div>
+                  <div className="text-2xl font-bold text-primary">7+</div>
                   <div className="text-sm text-muted-foreground">Domains Explored</div>
                 </div>
                 <div className="text-center">
