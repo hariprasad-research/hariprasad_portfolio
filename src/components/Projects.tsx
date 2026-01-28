@@ -88,8 +88,7 @@ const Projects = () => {
             Project Museum
           </h2>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-            A selection of my recent work spanning research, innovation, and engineering. 
-            Each project represents a unique challenge solved through interdisciplinary thinking.
+            A curated selection of my recent work spanning research, innovation, and engineering, where each project addresses a unique challenge through interdisciplinary thinking.
           </p>
         </div>
 
