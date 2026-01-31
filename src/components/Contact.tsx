@@ -23,8 +23,8 @@ const Contact = () => {
   }, {
     icon: Phone,
     label: "Phone",
-    value: "+1 (555) 123-4567",
-    href: "tel:+15551234567"
+    value: "+91 9498090637",
+    href: "tel:+919498090637"
   }, {
     icon: MapPin,
     label: "Location",
