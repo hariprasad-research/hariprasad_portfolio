@@ -1,4 +1,4 @@
-import { Mail, MapPin, Phone, Send } from 'lucide-react';
+import { Mail, MapPin, Phone, Send, Linkedin, Github } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -30,6 +30,16 @@ const Contact = () => {
     label: "Location",
     value: "Chennai, India",
     href: "#"
+  }, {
+    icon: Linkedin,
+    label: "LinkedIn",
+    value: "Connect on LinkedIn",
+    href: "https://linkedin.com/in/yourprofile"
+  }, {
+    icon: Github,
+    label: "GitHub",
+    value: "View GitHub Profile",
+    href: "https://github.com/yourprofile"
   }];
   return <section id="contact" className="py-20 bg-background">
       <div className="container mx-auto px-6">
