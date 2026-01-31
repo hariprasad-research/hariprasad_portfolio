@@ -39,7 +39,7 @@ const Contact = () => {
   }, {
     icon: Github,
     label: "GitHub",
-    href: "https://github.com/yourprofile"
+    href: "https://github.com/hariprasad-research"
   }];
   return <section id="contact" className="py-20 bg-background">
       <div className="container mx-auto px-6">
