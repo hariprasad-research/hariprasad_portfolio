@@ -30,15 +30,15 @@ const Contact = () => {
     label: "Location",
     value: "Chennai, India",
     href: "#"
-  }, {
+  }];
+
+  const socialLinks = [{
     icon: Linkedin,
     label: "LinkedIn",
-    value: "Connect on LinkedIn",
     href: "https://linkedin.com/in/yourprofile"
   }, {
     icon: Github,
     label: "GitHub",
-    value: "View GitHub Profile",
     href: "https://github.com/yourprofile"
   }];
   return <section id="contact" className="py-20 bg-background">
@@ -71,6 +71,21 @@ const Contact = () => {
                       </a>
                     </div>
                   </div>)}
+              </div>
+              
+              <div className="flex items-center gap-4 mt-6">
+                {socialLinks.map((item, index) => (
+                  <a 
+                    key={index} 
+                    href={item.href} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="w-12 h-12 bg-gradient-primary rounded-lg flex items-center justify-center hover:opacity-80 transition-opacity"
+                    aria-label={item.label}
+                  >
+                    <item.icon className="h-5 w-5 text-white" />
+                  </a>
+                ))}
               </div>
             </div>
 
