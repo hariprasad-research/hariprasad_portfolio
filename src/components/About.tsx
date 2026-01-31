@@ -98,7 +98,7 @@ const About = () => {
                 </div>
                 <div className="text-center">
                   <div className="text-2xl font-bold text-primary">5+</div>
-                  <div className="text-sm text-muted-foreground">Patents Filed</div>
+                  <div className="text-sm text-muted-foreground">Methodologies Applied</div>
                 </div>
               </div>
             </div>
