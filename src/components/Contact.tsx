@@ -28,7 +28,7 @@ const Contact = () => {
   }, {
     icon: MapPin,
     label: "Location",
-    value: "San Francisco, CA",
+    value: "Chennai, India",
     href: "#"
   }];
   return <section id="contact" className="py-20 bg-background">
