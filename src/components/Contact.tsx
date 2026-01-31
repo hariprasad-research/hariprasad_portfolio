@@ -18,8 +18,8 @@ const Contact = () => {
   const contactInfo = [{
     icon: Mail,
     label: "Email",
-    value: "contact@researcher.dev",
-    href: "mailto:contact@researcher.dev"
+    value: "hariprasad.research@gmail.com",
+    href: "mailto:hariprasad.research@gmail.com"
   }, {
     icon: Phone,
     label: "Phone",
