@@ -1,4 +1,4 @@
-import { Mail, MapPin, Phone, Send, Linkedin, Github } from 'lucide-react';
+import { Mail, MapPin, Phone, Send, Linkedin, Github, Instagram } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -40,6 +40,10 @@ const Contact = () => {
     icon: Github,
     label: "GitHub",
     href: "https://github.com/hariprasad-research"
+  }, {
+    icon: Instagram,
+    label: "Instagram",
+    href: "https://instagram.com/yourprofile"
   }];
   return <section id="contact" className="py-20 bg-background">
       <div className="container mx-auto px-6">
