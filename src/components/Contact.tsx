@@ -1,4 +1,4 @@
-import { Mail, MapPin, Phone, Send, Linkedin, Github, Instagram } from 'lucide-react';
+import { Mail, MapPin, Phone, Send, Linkedin, Github, Instagram, Youtube } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -44,6 +44,10 @@ const Contact = () => {
     icon: Instagram,
     label: "Instagram",
     href: "https://instagram.com/yourprofile"
+  }, {
+    icon: Youtube,
+    label: "YouTube",
+    href: "https://youtube.com/@yourchannel"
   }];
   return <section id="contact" className="py-20 bg-background">
       <div className="container mx-auto px-6">
