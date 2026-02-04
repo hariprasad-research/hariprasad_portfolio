@@ -47,7 +47,7 @@ const Contact = () => {
   }, {
     icon: Youtube,
     label: "YouTube",
-    href: "https://youtube.com/@yourchannel"
+    href: "https://www.youtube.com/@ICT_LABz"
   }];
   return <section id="contact" className="py-20 bg-background">
       <div className="container mx-auto px-6">
