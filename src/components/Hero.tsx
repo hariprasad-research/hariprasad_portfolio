@@ -28,7 +28,7 @@ const Hero = () => {
             
             <div className="flex flex-col sm:flex-row gap-4">
               <Button size="lg" onClick={() => scrollToSection('projects')} className="bg-gradient-primary hover:opacity-90 transition-opacity">
-                View My Work
+                Explore Museum
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
               <Button variant="outline" size="lg" className="border-primary/20 hover:bg-primary/5">
