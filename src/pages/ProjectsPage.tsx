@@ -152,24 +152,29 @@ const ProjectsPage = () => {
       </main>
 
       <Dialog open={!!selectedProject} onOpenChange={() => setSelectedProject(null)}>
-        <DialogContent className="max-w-lg">
+        <DialogContent className="max-w-lg data-[state=open]:animate-[scale-in_0.3s_ease-out,fade-in_0.2s_ease-out] data-[state=closed]:animate-[scale-out_0.2s_ease-out,fade-out_0.2s_ease-out]">
           <DialogHeader>
             <div className="flex items-center gap-2 mb-2">
-              <Badge variant="outline" className="text-xs">
+              <Badge variant="outline" className="text-xs animate-fade-in" style={{ animationDelay: '0.1s' }}>
                 {selectedProject?.type}
               </Badge>
-              <Badge className={`text-xs ${selectedProject ? getStatusColor(selectedProject.status) : ''}`}>
+              <Badge className={`text-xs animate-fade-in ${selectedProject ? getStatusColor(selectedProject.status) : ''}`} style={{ animationDelay: '0.15s' }}>
                 {selectedProject?.status}
               </Badge>
             </div>
-            <DialogTitle className="text-xl">{selectedProject?.title}</DialogTitle>
-            <DialogDescription className="text-muted-foreground pt-2">
+            <DialogTitle className="text-xl animate-fade-in" style={{ animationDelay: '0.2s' }}>{selectedProject?.title}</DialogTitle>
+            <DialogDescription className="text-muted-foreground pt-2 animate-fade-in" style={{ animationDelay: '0.25s' }}>
               {selectedProject?.description}
             </DialogDescription>
           </DialogHeader>
           <div className="flex flex-wrap gap-2 mt-4">
             {selectedProject?.tags.map((tag, index) => (
-              <Badge key={index} variant="secondary">
+              <Badge 
+                key={index} 
+                variant="secondary" 
+                className="animate-fade-in"
+                style={{ animationDelay: `${0.3 + index * 0.05}s` }}
+              >
                 {tag}
               </Badge>
             ))}
