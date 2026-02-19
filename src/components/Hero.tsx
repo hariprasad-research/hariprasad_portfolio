@@ -30,7 +30,7 @@ const Hero = () => {
       }, 60);
     } else if (!isDeleting && charIndex > currentRole.length) {
       // Pause before deleting
-      timeout = setTimeout(() => setIsDeleting(true), 10000);
+      timeout = setTimeout(() => setIsDeleting(true), 4000);
     } else if (isDeleting && charIndex > 0) {
       timeout = setTimeout(() => {
         setCharIndex(c => c - 1);
