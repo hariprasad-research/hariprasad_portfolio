@@ -1,9 +1,11 @@
 import { useState } from 'react';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Sun, Moon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { useTheme } from 'next-themes';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { theme, setTheme } = useTheme();
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
@@ -43,15 +45,35 @@ const Header = () => {
             </button>
           </nav>
 
-          {/* Mobile Menu Button */}
+          {/* Dark Mode Toggle */}
           <Button
             variant="ghost"
             size="sm"
-            className="md:hidden"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+            className="hidden md:flex"
+            aria-label="Toggle dark mode"
           >
-            {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
+            {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
           </Button>
+
+          {/* Mobile Menu Button */}
+          <div className="flex items-center gap-1 md:hidden">
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+              aria-label="Toggle dark mode"
+            >
+              {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
+            </Button>
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+            >
+              {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
+            </Button>
+          </div>
         </div>
 
         {/* Mobile Navigation */}
