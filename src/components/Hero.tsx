@@ -1,7 +1,49 @@
 import { ArrowRight, Download } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import heroImage from '@/assets/hero-image.jpg';
+import { useState, useEffect } from 'react';
+
+const roles = [
+  'Independent Researcher',
+  'Innovator & Builder',
+  'Mechanical Engineering',
+  'First Aid Responder',
+  'Indian Scientist (Aspirant)',
+  'National Martial Artist',
+  'World Record Holder',
+];
+
 const Hero = () => {
+  const [roleIndex, setRoleIndex] = useState(0);
+  const [displayed, setDisplayed] = useState('');
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [charIndex, setCharIndex] = useState(0);
+
+  useEffect(() => {
+    const currentRole = roles[roleIndex];
+    let timeout: ReturnType<typeof setTimeout>;
+
+    if (!isDeleting && charIndex <= currentRole.length) {
+      timeout = setTimeout(() => {
+        setDisplayed(currentRole.slice(0, charIndex));
+        setCharIndex(c => c + 1);
+      }, 60);
+    } else if (!isDeleting && charIndex > currentRole.length) {
+      // Pause before deleting
+      timeout = setTimeout(() => setIsDeleting(true), 10000);
+    } else if (isDeleting && charIndex > 0) {
+      timeout = setTimeout(() => {
+        setCharIndex(c => c - 1);
+        setDisplayed(currentRole.slice(0, charIndex - 1));
+      }, 35);
+    } else if (isDeleting && charIndex === 0) {
+      setIsDeleting(false);
+      setRoleIndex(i => (i + 1) % roles.length);
+    }
+
+    return () => clearTimeout(timeout);
+  }, [charIndex, isDeleting, roleIndex]);
+
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
@@ -17,8 +59,10 @@ const Hero = () => {
             <div className="space-y-4">
               <h1 className="text-4xl md:text-6xl font-bold text-foreground leading-tight">Hari prasad S
 
-              <span className="block bg-gradient-primary bg-clip-text text-transparent text-4xl">Independent Researcher &</span>
-                <span className="block text-4xl">Innovator</span>
+              <span className="block bg-gradient-primary bg-clip-text text-transparent text-4xl min-h-[2.5rem]">
+                  {displayed}
+                  <span className="inline-block w-0.5 h-8 bg-primary ml-1 animate-pulse align-middle" />
+                </span>
               </h1>
               <p className="text-xl text-muted-foreground max-w-lg">
                 Bridging the gap between cutting-edge research and practical innovation. 
