@@ -4,14 +4,14 @@ import heroImage from '@/assets/hero-image.jpg';
 import { useState, useEffect } from 'react';
 
 const roles = [
-  'Independent Researcher',
-  'Innovator & Builder',
-  'Mechanical Engineering',
-  'First Aid Responder',
-  'Indian Scientist (Aspirant)',
-  'National Martial Artist',
-  'World Record Holder',
-];
+'Independent Researcher',
+'Innovator & Builder',
+'Mechanical Engineering',
+'First Aid Responder',
+'Indian Scientist (Aspirant)',
+'National Martial Artist',
+'World Record Holder'];
+
 
 const Hero = () => {
   const [roleIndex, setRoleIndex] = useState(0);
@@ -26,19 +26,19 @@ const Hero = () => {
     if (!isDeleting && charIndex <= currentRole.length) {
       timeout = setTimeout(() => {
         setDisplayed(currentRole.slice(0, charIndex));
-        setCharIndex(c => c + 1);
+        setCharIndex((c) => c + 1);
       }, 60);
     } else if (!isDeleting && charIndex > currentRole.length) {
       // Pause before deleting
       timeout = setTimeout(() => setIsDeleting(true), 4000);
     } else if (isDeleting && charIndex > 0) {
       timeout = setTimeout(() => {
-        setCharIndex(c => c - 1);
+        setCharIndex((c) => c - 1);
         setDisplayed(currentRole.slice(0, charIndex - 1));
       }, 35);
     } else if (isDeleting && charIndex === 0) {
       setIsDeleting(false);
-      setRoleIndex(i => (i + 1) % roles.length);
+      setRoleIndex((i) => (i + 1) % roles.length);
     }
 
     return () => clearTimeout(timeout);
@@ -59,7 +59,7 @@ const Hero = () => {
             <div className="space-y-4">
               <h1 className="text-4xl md:text-6xl font-bold text-foreground leading-tight">Hari prasad S
 
-              <span className="block bg-gradient-primary bg-clip-text text-transparent text-4xl min-h-[2.5rem]">
+              <span className="block bg-gradient-primary bg-clip-text text-transparent text-4xl min-h-[2.5rem] mt-[20px]">
                   {displayed}
                   <span className="inline-block w-0.5 h-8 bg-primary ml-1 animate-pulse align-middle" />
                 </span>
