@@ -59,7 +59,7 @@ const Hero = () => {
             <div className="space-y-4">
               <h1 className="text-4xl font-bold text-foreground leading-tight py-0 my-0 md:text-7xl">Hari prasad S
 
-              <span className="block bg-gradient-primary bg-clip-text text-transparent text-4xl min-h-[2.5rem] my-[55px] mb-0 mt-[10px]">
+              <span className="block bg-gradient-primary bg-clip-text text-transparent text-4xl min-h-[2.5rem] my-[55px] mb-0 mt-[20px]">
                   {displayed}
                   <span className="inline-block w-0.5 h-8 bg-primary ml-1 animate-pulse align-middle" />
                 </span>
