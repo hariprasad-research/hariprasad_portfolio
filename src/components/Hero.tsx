@@ -57,7 +57,7 @@ const Hero = () => {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div className="space-y-8">
             <div className="space-y-4">
-              <h1 className="text-4xl md:text-6xl font-bold text-foreground leading-tight">Hari prasad S
+              <h1 className="text-4xl font-bold text-foreground leading-tight md:text-7xl">Hari prasad S
 
               <span className="block bg-gradient-primary bg-clip-text text-transparent text-4xl min-h-[2.5rem] mt-[20px]">
                   {displayed}
