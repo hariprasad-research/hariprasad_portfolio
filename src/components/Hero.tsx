@@ -2,22 +2,24 @@ import { ArrowRight, Download } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import heroImage from '@/assets/hero-image.jpg';
 import { useState, useEffect } from 'react';
+import useScrollReveal from '@/hooks/useScrollReveal';
 
 const roles = [
-'Independent Researcher',
-'Innovator & Builder',
-'Mechanical Engineering',
-'Certified First Aid Responder',
-'Indian Scientist (Aspirant)',
-'National Martial Artist',
-'World Record Holder'];
-
+  'Independent Researcher',
+  'Innovator & Builder',
+  'Mechanical Engineering',
+  'Certified First Aid Responder',
+  'Indian Scientist (Aspirant)',
+  'National Martial Artist',
+  'World Record Holder',
+];
 
 const Hero = () => {
   const [roleIndex, setRoleIndex] = useState(0);
   const [displayed, setDisplayed] = useState('');
   const [isDeleting, setIsDeleting] = useState(false);
   const [charIndex, setCharIndex] = useState(0);
+  const { ref, visible } = useScrollReveal(0.05);
 
   useEffect(() => {
     const currentRole = roles[roleIndex];
@@ -29,7 +31,6 @@ const Hero = () => {
         setCharIndex((c) => c + 1);
       }, 60);
     } else if (!isDeleting && charIndex > currentRole.length) {
-      // Pause before deleting
       timeout = setTimeout(() => setIsDeleting(true), 4000);
     } else if (isDeleting && charIndex > 0) {
       timeout = setTimeout(() => {
@@ -46,32 +47,39 @@ const Hero = () => {
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({
-        behavior: 'smooth'
-      });
-    }
+    if (element) element.scrollIntoView({ behavior: 'smooth' });
   };
-  return <section className="min-h-screen flex items-center bg-gradient-subtle">
+
+  return (
+    <section ref={ref} className="min-h-screen flex items-center bg-gradient-subtle">
       <div className="container mx-auto px-6 py-20">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
-          <div className="space-y-8">
+          {/* Text side */}
+          <div
+            className={`space-y-8 transition-all duration-700 ease-out ${
+              visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+            }`}
+          >
             <div className="space-y-4">
-              <h1 className="text-4xl md:text-6xl font-bold text-foreground leading-tight">Hari prasad S
-
-              <span className="block bg-gradient-primary bg-clip-text text-transparent text-4xl min-h-[2.5rem] mt-[20px]">
+              <h1 className="text-4xl md:text-6xl font-bold text-foreground leading-tight">
+                Hari prasad S
+                <span className="block bg-gradient-primary bg-clip-text text-transparent text-4xl min-h-[2.5rem] mt-[20px]">
                   {displayed}
                   <span className="inline-block w-0.5 h-8 bg-primary ml-1 animate-pulse align-middle" />
                 </span>
               </h1>
               <p className="text-xl text-muted-foreground max-w-lg">
-                Bridging the gap between cutting-edge research and practical innovation. 
+                Bridging the gap between cutting-edge research and practical innovation.
                 Specialized in emerging technologies, data science, and engineering solutions.
               </p>
             </div>
-            
+
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button size="lg" onClick={() => scrollToSection('projects')} className="bg-gradient-primary hover:opacity-90 transition-opacity">
+              <Button
+                size="lg"
+                onClick={() => scrollToSection('projects')}
+                className="bg-gradient-primary hover:opacity-90 transition-opacity"
+              >
                 Explore Museum
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
@@ -81,15 +89,26 @@ const Hero = () => {
               </Button>
             </div>
           </div>
-          
-          <div className="relative">
+
+          {/* Image side */}
+          <div
+            className={`relative transition-all duration-700 ease-out delay-200 ${
+              visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+            }`}
+          >
             <div className="relative rounded-2xl overflow-hidden shadow-elegant">
-              <img src={heroImage} alt="Professional workspace" className="w-full h-[500px] object-cover" />
-              <div className="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent"></div>
+              <img
+                src={heroImage}
+                alt="Professional workspace"
+                className="w-full h-[500px] object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent" />
             </div>
           </div>
         </div>
       </div>
-    </section>;
+    </section>
+  );
 };
+
 export default Hero;
