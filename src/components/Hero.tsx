@@ -5,14 +5,14 @@ import { useState, useEffect } from 'react';
 import useScrollReveal from '@/hooks/useScrollReveal';
 
 const roles = [
-  'Independent Researcher',
-  'Innovator & Builder',
-  'Mechanical Engineering',
-  'Certified First Aid Responder',
-  'Indian Scientist (Aspirant)',
-  'National Martial Artist',
-  'World Record Holder',
-];
+'Independent Researcher',
+'Innovator & Builder',
+'Mechanical Engineering',
+'Certified First Aid Responder',
+'Indian Scientist (Aspirant)',
+'National Martial Artist',
+'World Record Holder'];
+
 
 const Hero = () => {
   const [roleIndex, setRoleIndex] = useState(0);
@@ -57,9 +57,9 @@ const Hero = () => {
           {/* Text side */}
           <div
             className={`space-y-8 transition-all duration-700 ease-out ${
-              visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-            }`}
-          >
+            visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`
+            }>
+
             <div className="space-y-4">
               <h1 className="text-4xl md:text-6xl font-bold text-foreground leading-tight">
                 Hari prasad S
@@ -69,8 +69,8 @@ const Hero = () => {
                 </span>
               </h1>
               <p className="text-xl text-muted-foreground max-w-lg">
-                Bridging the gap between cutting-edge research and practical innovation.
-                Specialized in emerging technologies, data science, and engineering solutions.
+                Conducting independent research in embedded systems, experimental engineering, and prototype system development, with a focus on translating scientific concepts into functional real-world technologies.
+              
               </p>
             </div>
 
@@ -78,8 +78,8 @@ const Hero = () => {
               <Button
                 size="lg"
                 onClick={() => scrollToSection('projects')}
-                className="bg-gradient-primary hover:opacity-90 transition-opacity"
-              >
+                className="bg-gradient-primary hover:opacity-90 transition-opacity">
+
                 Explore Museum
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
@@ -93,22 +93,22 @@ const Hero = () => {
           {/* Image side */}
           <div
             className={`relative transition-all duration-700 ease-out delay-200 ${
-              visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-            }`}
-          >
+            visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`
+            }>
+
             <div className="relative rounded-2xl overflow-hidden shadow-elegant">
               <img
                 src={heroImage}
                 alt="Professional workspace"
-                className="w-full h-[500px] object-cover"
-              />
+                className="w-full h-[500px] object-cover" />
+
               <div className="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent" />
             </div>
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>);
+
 };
 
 export default Hero;
