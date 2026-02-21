@@ -67,7 +67,7 @@ const About = () => {
 
               </p>
               <div className="space-y-4">
-                {["Research-driven methodology", "Collaborative innovation", "Practical implementation"].map((point) =>
+                {["Systematic experimental design", "Iterative prototype development", "Engineering validation and analysis"].map((point) =>
                 <div key={point} className="flex items-center">
                     <div className="w-2 h-2 bg-primary rounded-full mr-3 shrink-0" />
                     <span className="text-foreground">{point}</span>
