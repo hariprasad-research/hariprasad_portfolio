@@ -9,10 +9,10 @@ const Footer = () => {
   const scrollToTop = () => window.scrollTo({ top: 0, behavior: 'smooth' });
 
   const socialLinks = [
-  { icon: Linkedin, label: "LinkedIn", href: "https://linkedin.com/in/yourprofile" },
+  { icon: Linkedin, label: "LinkedIn", href: "https://linkedin.com/in/dr-hari-prasad-s" },
   { icon: Github, label: "GitHub", href: "https://github.com/hariprasad-research" },
-  { icon: Instagram, label: "Instagram", href: "https://instagram.com/yourprofile" },
-  { icon: Youtube, label: "YouTube", href: "https://www.youtube.com/@ICT_LABz" },
+  { icon: Instagram, label: "Instagram", href: "https://www.instagram.com/indian_scientist_?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" },
+  { icon: Youtube, label: "YouTube", href: "https://youtube.com/@ict_labz?si=eP_82jlVnq2NbOm5" },
   { icon: Mail, label: "Email", href: "mailto:hariprasad.research@gmail.com" }];
 
 
