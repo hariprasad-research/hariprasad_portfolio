@@ -100,7 +100,7 @@ const Hero = () => {
               <img
                 src={heroImage}
                 alt="Professional workspace"
-                className="w-full h-[500px] object-cover" />
+                className="w-full h-[60vh] sm:h-[50vh] md:h-[55vh] lg:h-[65vh] xl:h-[70vh] object-cover" />
 
               <div className="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent" />
             </div>
