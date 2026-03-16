@@ -164,8 +164,8 @@ const ProjectsPage = () => {
       "https://images.unsplash.com/photo-1507582020474-9a35b7d455d9?w=400&h=300&fit=crop",
       "https://images.unsplash.com/photo-1473968512647-3e447244af8f?w=400&h=300&fit=crop"
     ],
-    videoUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-    reportUrl: "#"
+    videoUrl: "https://youtube.com/@ict_labz?si=eP_82jlVnq2NbOm5",
+    reportUrl: "https://youtube.com/@ict_labz?si=eP_82jlVnq2NbOm5"
   }, {
     title: "Natural Language Understanding Engine",
     description: "Advanced NLU engine for semantic parsing and intent recognition. Supports multiple languages and domain-specific fine-tuning.",
