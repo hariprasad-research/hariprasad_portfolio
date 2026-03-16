@@ -167,11 +167,13 @@ const ProjectFlashcard = ({ project, open, onOpenChange }: ProjectFlashcardProps
             <div className="flex flex-wrap gap-3 pt-2 animate-fade-in" style={{ animationDelay: '0.5s' }}>
               {project.videoUrl && (
                 <Button 
-                  onClick={() => setVideoOpen(true)}
                   className="gap-2"
+                  asChild
                 >
-                  <Video className="h-4 w-4" />
-                  View Testing Video
+                  <a href={project.videoUrl} target="_blank" rel="noopener noreferrer">
+                    <Video className="h-4 w-4" />
+                    View Testing Video
+                  </a>
                 </Button>
               )}
               {project.reportUrl && (

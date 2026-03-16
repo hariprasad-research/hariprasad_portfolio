@@ -34,8 +34,8 @@ const ProjectsPage = () => {
       "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=400&h=300&fit=crop",
       "https://images.unsplash.com/photo-1527474305487-b87b222841cc?w=400&h=300&fit=crop"
     ],
-    videoUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-    reportUrl: "#"
+    videoUrl: "https://youtube.com/@ict_labz?si=eP_82jlVnq2NbOm5",
+    reportUrl: "https://youtube.com/@ict_labz?si=eP_82jlVnq2NbOm5"
   }, {
     title: "Quantum Computing Simulator",
     description: "High-performance quantum circuit simulator for educational and research purposes. Includes quantum algorithm implementations and noise modeling capabilities.",
@@ -60,8 +60,8 @@ const ProjectsPage = () => {
       "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=400&h=300&fit=crop",
       "https://images.unsplash.com/photo-1518770660439-4636190af475?w=400&h=300&fit=crop"
     ],
-    videoUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-    reportUrl: "#"
+    videoUrl: "https://youtube.com/@ict_labz?si=eP_82jlVnq2NbOm5",
+    reportUrl: "https://youtube.com/@ict_labz?si=eP_82jlVnq2NbOm5"
   }, {
     title: "Distributed Systems Optimization",
     description: "Novel approach to optimizing distributed computing systems using adaptive load balancing and predictive resource allocation algorithms.",
@@ -86,7 +86,8 @@ const ProjectsPage = () => {
       "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=400&h=300&fit=crop",
       "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=400&h=300&fit=crop"
     ],
-    videoUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+    videoUrl: "https://youtube.com/@ict_labz?si=eP_82jlVnq2NbOm5",
+    reportUrl: "https://youtube.com/@ict_labz?si=eP_82jlVnq2NbOm5"
   }, {
     title: "Biomedical Data Mining Framework",
     description: "Scalable framework for mining patterns in large-scale biomedical datasets. Includes privacy-preserving techniques and federated learning capabilities.",
@@ -111,8 +112,8 @@ const ProjectsPage = () => {
       "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=400&h=300&fit=crop",
       "https://images.unsplash.com/photo-1559757175-0eb30cd8c063?w=400&h=300&fit=crop"
     ],
-    videoUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-    reportUrl: "#"
+    videoUrl: "https://youtube.com/@ict_labz?si=eP_82jlVnq2NbOm5",
+    reportUrl: "https://youtube.com/@ict_labz?si=eP_82jlVnq2NbOm5"
   }, {
     title: "IoT Security Protocol",
     description: "Lightweight security protocol for resource-constrained IoT devices. Features end-to-end encryption with minimal computational overhead.",
@@ -137,7 +138,8 @@ const ProjectsPage = () => {
       "https://images.unsplash.com/photo-1558346490-a72e53ae2d4f?w=400&h=300&fit=crop",
       "https://images.unsplash.com/photo-1573164713988-8665fc963095?w=400&h=300&fit=crop"
     ],
-    reportUrl: "#"
+    videoUrl: "https://youtube.com/@ict_labz?si=eP_82jlVnq2NbOm5",
+    reportUrl: "https://youtube.com/@ict_labz?si=eP_82jlVnq2NbOm5"
   }, {
     title: "Autonomous Systems Coordination",
     description: "Multi-agent coordination system for autonomous vehicles and drones. Implements consensus algorithms and real-time decision making.",
@@ -162,8 +164,8 @@ const ProjectsPage = () => {
       "https://images.unsplash.com/photo-1507582020474-9a35b7d455d9?w=400&h=300&fit=crop",
       "https://images.unsplash.com/photo-1473968512647-3e447244af8f?w=400&h=300&fit=crop"
     ],
-    videoUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-    reportUrl: "#"
+    videoUrl: "https://youtube.com/@ict_labz?si=eP_82jlVnq2NbOm5",
+    reportUrl: "https://youtube.com/@ict_labz?si=eP_82jlVnq2NbOm5"
   }, {
     title: "Natural Language Understanding Engine",
     description: "Advanced NLU engine for semantic parsing and intent recognition. Supports multiple languages and domain-specific fine-tuning.",
@@ -188,8 +190,8 @@ const ProjectsPage = () => {
       "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=400&h=300&fit=crop",
       "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=400&h=300&fit=crop"
     ],
-    videoUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-    reportUrl: "#"
+    videoUrl: "https://youtube.com/@ict_labz?si=eP_82jlVnq2NbOm5",
+    reportUrl: "https://youtube.com/@ict_labz?si=eP_82jlVnq2NbOm5"
   }, {
     title: "Edge Computing Framework",
     description: "Lightweight framework for deploying ML models on edge devices. Optimized for low-latency inference and minimal memory footprint.",
@@ -214,8 +216,8 @@ const ProjectsPage = () => {
       "https://images.unsplash.com/photo-1597852074816-d933c7d2b988?w=400&h=300&fit=crop",
       "https://images.unsplash.com/photo-1580584126903-c17d41830450?w=400&h=300&fit=crop"
     ],
-    videoUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-    reportUrl: "#"
+    videoUrl: "https://youtube.com/@ict_labz?si=eP_82jlVnq2NbOm5",
+    reportUrl: "https://youtube.com/@ict_labz?si=eP_82jlVnq2NbOm5"
   }];
 
   const getStatusColor = (status: string) => {
