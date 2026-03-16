@@ -190,8 +190,8 @@ const ProjectsPage = () => {
       "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=400&h=300&fit=crop",
       "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=400&h=300&fit=crop"
     ],
-    videoUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-    reportUrl: "#"
+    videoUrl: "https://youtube.com/@ict_labz?si=eP_82jlVnq2NbOm5",
+    reportUrl: "https://youtube.com/@ict_labz?si=eP_82jlVnq2NbOm5"
   }, {
     title: "Edge Computing Framework",
     description: "Lightweight framework for deploying ML models on edge devices. Optimized for low-latency inference and minimal memory footprint.",
