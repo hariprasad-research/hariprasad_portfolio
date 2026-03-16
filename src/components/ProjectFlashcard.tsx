@@ -12,6 +12,7 @@ export interface ProjectDetails {
   tags: string[];
   type: string;
   status: string;
+  category?: string;
   problemStatement: string;
   objective: string;
   approach: string[];
