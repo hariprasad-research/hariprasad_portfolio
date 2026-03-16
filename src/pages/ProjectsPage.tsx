@@ -138,7 +138,8 @@ const ProjectsPage = () => {
       "https://images.unsplash.com/photo-1558346490-a72e53ae2d4f?w=400&h=300&fit=crop",
       "https://images.unsplash.com/photo-1573164713988-8665fc963095?w=400&h=300&fit=crop"
     ],
-    reportUrl: "#"
+    videoUrl: "https://youtube.com/@ict_labz?si=eP_82jlVnq2NbOm5",
+    reportUrl: "https://youtube.com/@ict_labz?si=eP_82jlVnq2NbOm5"
   }, {
     title: "Autonomous Systems Coordination",
     description: "Multi-agent coordination system for autonomous vehicles and drones. Implements consensus algorithms and real-time decision making.",
