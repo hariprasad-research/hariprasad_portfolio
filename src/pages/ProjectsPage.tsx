@@ -112,8 +112,8 @@ const ProjectsPage = () => {
       "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=400&h=300&fit=crop",
       "https://images.unsplash.com/photo-1559757175-0eb30cd8c063?w=400&h=300&fit=crop"
     ],
-    videoUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-    reportUrl: "#"
+    videoUrl: "https://youtube.com/@ict_labz?si=eP_82jlVnq2NbOm5",
+    reportUrl: "https://youtube.com/@ict_labz?si=eP_82jlVnq2NbOm5"
   }, {
     title: "IoT Security Protocol",
     description: "Lightweight security protocol for resource-constrained IoT devices. Features end-to-end encryption with minimal computational overhead.",
