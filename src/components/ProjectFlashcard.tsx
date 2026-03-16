@@ -187,7 +187,7 @@ const ProjectFlashcard = ({ project, open, onOpenChange }: ProjectFlashcardProps
                       title: "Coming Soon",
                       description: "Technical documentation will be published as soon as possible.",
                     });
-                    window.open(project.reportUrl, '_blank', 'noopener,noreferrer');
+                    
                   }}
                 >
                   <FileText className="h-4 w-4" />
