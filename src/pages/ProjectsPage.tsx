@@ -34,8 +34,8 @@ const ProjectsPage = () => {
       "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=400&h=300&fit=crop",
       "https://images.unsplash.com/photo-1527474305487-b87b222841cc?w=400&h=300&fit=crop"
     ],
-    videoUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-    reportUrl: "#"
+    videoUrl: "https://youtube.com/@ict_labz?si=eP_82jlVnq2NbOm5",
+    reportUrl: "https://youtube.com/@ict_labz?si=eP_82jlVnq2NbOm5"
   }, {
     title: "Quantum Computing Simulator",
     description: "High-performance quantum circuit simulator for educational and research purposes. Includes quantum algorithm implementations and noise modeling capabilities.",
