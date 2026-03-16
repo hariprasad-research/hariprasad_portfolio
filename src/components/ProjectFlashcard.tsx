@@ -48,6 +48,7 @@ const getStatusColor = (status: string) => {
 
 const ProjectFlashcard = ({ project, open, onOpenChange }: ProjectFlashcardProps) => {
   const [videoOpen, setVideoOpen] = useState(false);
+  const { toast } = useToast();
 
   if (!project) return null;
 
