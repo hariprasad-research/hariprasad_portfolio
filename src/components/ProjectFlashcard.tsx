@@ -181,12 +181,16 @@ const ProjectFlashcard = ({ project, open, onOpenChange }: ProjectFlashcardProps
                 <Button 
                   variant="outline" 
                   className="gap-2"
-                  asChild
+                  onClick={() => {
+                    toast({
+                      title: "Coming Soon",
+                      description: "Technical documentation will be published as soon as possible.",
+                    });
+                    window.open(project.reportUrl, '_blank', 'noopener,noreferrer');
+                  }}
                 >
-                  <a href={project.reportUrl} target="_blank" rel="noopener noreferrer">
-                    <FileText className="h-4 w-4" />
-                    Download Report
-                  </a>
+                  <FileText className="h-4 w-4" />
+                  Download Report
                 </Button>
               )}
             </div>
