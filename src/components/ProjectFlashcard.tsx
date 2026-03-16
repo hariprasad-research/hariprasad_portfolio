@@ -4,6 +4,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } f
 import { AspectRatio } from '@/components/ui/aspect-ratio';
 import { Video, FileText, X } from 'lucide-react';
 import { useState } from 'react';
+import { useToast } from '@/hooks/use-toast';
 
 export interface ProjectDetails {
   title: string;
