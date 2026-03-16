@@ -4,6 +4,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } f
 import { AspectRatio } from '@/components/ui/aspect-ratio';
 import { Video, FileText, X } from 'lucide-react';
 import { useState } from 'react';
+import { useToast } from '@/hooks/use-toast';
 
 export interface ProjectDetails {
   title: string;
@@ -47,6 +48,7 @@ const getStatusColor = (status: string) => {
 
 const ProjectFlashcard = ({ project, open, onOpenChange }: ProjectFlashcardProps) => {
   const [videoOpen, setVideoOpen] = useState(false);
+  const { toast } = useToast();
 
   if (!project) return null;
 
@@ -180,12 +182,16 @@ const ProjectFlashcard = ({ project, open, onOpenChange }: ProjectFlashcardProps
                 <Button 
                   variant="outline" 
                   className="gap-2"
-                  asChild
+                  onClick={() => {
+                    toast({
+                      title: "Coming Soon",
+                      description: "Technical documentation will be published as soon as possible.",
+                    });
+                    window.open(project.reportUrl, '_blank', 'noopener,noreferrer');
+                  }}
                 >
-                  <a href={project.reportUrl} target="_blank" rel="noopener noreferrer">
-                    <FileText className="h-4 w-4" />
-                    Download Report
-                  </a>
+                  <FileText className="h-4 w-4" />
+                  Download Report
                 </Button>
               )}
             </div>
