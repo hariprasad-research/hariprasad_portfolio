@@ -2,19 +2,9 @@ import { Mail, MapPin, Phone, Send, Linkedin, Github, Instagram, Youtube } from 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import useScrollReveal from '@/hooks/useScrollReveal';
-import useScrollReveal from '@/hooks/useScrollReveal';
 
 const Contact = () => {
-  const { toast } = useToast();
   const { ref, visible } = useScrollReveal();
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    toast({
-      title: "Message sent!",
-      description: "Thank you for your message. I'll get back to you soon."
-    });
-  };
 
   const contactInfo = [
     { icon: Mail, label: "Email", value: "hariprasad.researcher@gmail.com", href: "mailto:hariprasad.researcher@gmail.com" },
