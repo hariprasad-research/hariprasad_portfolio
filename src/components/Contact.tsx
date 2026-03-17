@@ -82,24 +82,19 @@ const Contact = () => {
                 <CardTitle className="text-lg">Areas of Expertise</CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="space-y-3">
-                  {[
-                    "Embedded Systems & Electronics",
-                    "Space Systems (Ground & Concepts)",
-                    "Prototyping & Experimental Research",
-                    "Sustainable Materials & Eco-Tech",
-                    "IoT & Automation Logic",
-                    "Web-Based System Interfaces",
-                    "Systems Thinking & Problem Solving",
-                    "Human Performance & Discipline"
-                  ].map((item, index) => (
-                    <div key={item} className="flex items-center gap-3">
-                      <div className="w-8 h-8 bg-gradient-primary rounded-full flex items-center justify-center shrink-0">
-                        <span className="text-white text-sm font-semibold">{index + 1}</span>
-                      </div>
-                      <span className="text-foreground font-medium">{item}</span>
-                    </div>
-                  ))}
+                <div className="grid grid-cols-2 gap-4 text-sm">
+                  <div className="space-y-2">
+                    <div className="text-muted-foreground">• Embedded Systems & Electronics</div>
+                    <div className="text-muted-foreground">• Space Systems (Ground & Concepts)</div>
+                    <div className="text-muted-foreground">• Prototyping & Experimental Research</div>
+                    <div className="text-muted-foreground">• Sustainable Materials & Eco-Tech</div>
+                  </div>
+                  <div className="space-y-2">
+                    <div className="text-muted-foreground">• IoT & Automation Logic</div>
+                    <div className="text-muted-foreground">• Web-Based System Interfaces</div>
+                    <div className="text-muted-foreground">• Systems Thinking & Problem Solving</div>
+                    <div className="text-muted-foreground">• Human Performance & Discipline</div>
+                  </div>
                 </div>
               </CardContent>
             </Card>
