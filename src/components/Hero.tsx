@@ -1,4 +1,4 @@
-import { ArrowRight, Download } from 'lucide-react';
+import { ArrowRight, Mail } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import heroImage from '@/assets/hero-image.jpg';
 import { useState, useEffect } from 'react';
@@ -83,9 +83,18 @@ const Hero = () => {
                 Explore Museum
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
-              <Button variant="outline" size="lg" className="border-primary/20 hover:bg-primary/5">
-                <Download className="mr-2 h-4 w-4" />
-                Download CV
+              <Button
+                variant="outline"
+                size="lg"
+                className="border-primary/20 hover:bg-primary/5"
+                onClick={() => {
+                  const subject = encodeURIComponent("Resume Request");
+                  const body = encodeURIComponent("Hello Hari Prasad,\n\nI would like to request a copy of your resume for review.\n\nThank you.");
+                  window.open(`mailto:hariprasad.researcher@gmail.com?subject=${subject}&body=${body}`, '_blank');
+                }}
+              >
+                <Mail className="mr-2 h-4 w-4" />
+                Request Resume
               </Button>
             </div>
           </div>
