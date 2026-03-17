@@ -100,45 +100,34 @@ const Contact = () => {
             </Card>
           </div>
 
-          {/* Right column - Form */}
+          {/* Right column - Research Contact */}
           <div
             className={`transition-all duration-700 ease-out delay-200 ${
               visible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'
             }`}
           >
-            <Card className="shadow-card">
+            <Card className="shadow-card h-full flex flex-col justify-center">
               <CardHeader>
-                <CardTitle className="text-xl">Send a Message</CardTitle>
+                <CardTitle className="text-xl">Research Contact</CardTitle>
               </CardHeader>
-              <CardContent>
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="grid grid-cols-2 gap-4">
-                    <div>
-                      <label className="text-sm font-medium text-foreground block mb-2">First Name</label>
-                      <Input placeholder="John" required />
-                    </div>
-                    <div>
-                      <label className="text-sm font-medium text-foreground block mb-2">Last Name</label>
-                      <Input placeholder="Doe" required />
-                    </div>
-                  </div>
-                  <div>
-                    <label className="text-sm font-medium text-foreground block mb-2">Email</label>
-                    <Input type="email" placeholder="john@example.com" required />
-                  </div>
-                  <div>
-                    <label className="text-sm font-medium text-foreground block mb-2">Subject</label>
-                    <Input placeholder="Collaboration Opportunity" required />
-                  </div>
-                  <div>
-                    <label className="text-sm font-medium text-foreground block mb-2">Message</label>
-                    <Textarea placeholder="Tell me about your project or research interests..." className="min-h-[120px]" required />
-                  </div>
-                  <Button type="submit" className="w-full bg-gradient-primary hover:opacity-90">
+              <CardContent className="space-y-6">
+                <div>
+                  <h4 className="text-lg font-semibold text-foreground mb-2">Interested in Collaboration or Research?</h4>
+                  <p className="text-muted-foreground">
+                    If you would like to discuss research ideas, experimental systems, or potential collaborations, feel free to reach out.
+                  </p>
+                </div>
+                <a
+                  href="https://forms.gle/bJZ4NU8FJXfnLk6W8"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block w-full"
+                >
+                  <Button className="w-full bg-gradient-primary hover:opacity-90">
                     <Send className="mr-2 h-4 w-4" />
-                    Send Message
+                    Send Inquiry
                   </Button>
-                </form>
+                </a>
               </CardContent>
             </Card>
           </div>
