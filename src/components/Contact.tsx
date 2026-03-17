@@ -19,7 +19,7 @@ const Contact = () => {
   };
 
   const contactInfo = [
-    { icon: Mail, label: "Email", value: "hariprasad.research@gmail.com", href: "mailto:hariprasad.research@gmail.com" },
+    { icon: Mail, label: "Email", value: "hariprasad.researcher@gmail.com", href: "mailto:hariprasad.researcher@gmail.com" },
     { icon: Phone, label: "Phone", value: "+91 9498090637", href: "tel:+919498090637" },
     { icon: MapPin, label: "Location", value: "Chennai, India", href: "#" },
   ];
