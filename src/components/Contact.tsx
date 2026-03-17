@@ -106,7 +106,7 @@ const Contact = () => {
               visible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'
             }`}
           >
-            <Card className="shadow-card h-full flex flex-col justify-center">
+            <Card className="shadow-card">
               <CardHeader>
                 <CardTitle className="text-xl">Research Contact</CardTitle>
               </CardHeader>

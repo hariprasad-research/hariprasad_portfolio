@@ -93,7 +93,7 @@ const Hero = () => {
                   window.open(`mailto:hariprasad.researcher@gmail.com?subject=${subject}&body=${body}`, '_blank');
                 }}
               >
-                <Mail className="mr-2 h-4 w-4" />
+                <Download className="mr-2 h-4 w-4" />
                 Request Resume
               </Button>
             </div>

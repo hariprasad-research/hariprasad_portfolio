@@ -13,7 +13,7 @@ const Footer = () => {
   { icon: Github, label: "GitHub", href: "https://github.com/hariprasad-research" },
   { icon: Instagram, label: "Instagram", href: "https://www.instagram.com/indian_scientist_?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" },
   { icon: Youtube, label: "YouTube", href: "https://youtube.com/@ict_labz?si=eP_82jlVnq2NbOm5" },
-  { icon: Mail, label: "Email", href: "mailto:hariprasad.research@gmail.com" }];
+  { icon: Mail, label: "Email", href: "mailto:hariprasad.researcher@gmail.com" }];
 
 
   const navLinks = [
