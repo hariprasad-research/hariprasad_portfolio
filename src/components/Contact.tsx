@@ -133,7 +133,7 @@ const Contact = () => {
 
             <Card className="shadow-card mt-6">
               <CardHeader>
-                <CardTitle className="text-xl">My Scientific Method</CardTitle>
+                <CardTitle className="text-lg">My Scientific Method</CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-muted-foreground mb-4">
