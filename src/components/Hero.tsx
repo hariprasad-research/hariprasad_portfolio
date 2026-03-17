@@ -1,4 +1,4 @@
-import { ArrowRight, Mail } from 'lucide-react';
+import { ArrowRight, Download } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import heroImage from '@/assets/hero-image.jpg';
 import { useState, useEffect } from 'react';
@@ -93,7 +93,7 @@ const Hero = () => {
                   window.open(`mailto:hariprasad.researcher@gmail.com?subject=${subject}&body=${body}`, '_blank');
                 }}
               >
-                <Mail className="mr-2 h-4 w-4" />
+                <Download className="mr-2 h-4 w-4" />
                 Request Resume
               </Button>
             </div>
