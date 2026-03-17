@@ -1,9 +1,7 @@
 import { Mail, MapPin, Phone, Send, Linkedin, Github, Instagram, Youtube } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
-import { useToast } from '@/hooks/use-toast';
+import useScrollReveal from '@/hooks/useScrollReveal';
 import useScrollReveal from '@/hooks/useScrollReveal';
 
 const Contact = () => {
