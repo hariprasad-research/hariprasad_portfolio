@@ -130,6 +130,27 @@ const Contact = () => {
                 </a>
               </CardContent>
             </Card>
+
+            <Card className="shadow-card mt-6">
+              <CardHeader>
+                <CardTitle className="text-xl">My Scientific Method</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-muted-foreground mb-4">
+                  My work follows a structured scientific approach that transforms curiosity into practical engineering solutions.
+                </p>
+                <div className="space-y-3">
+                  {["Observation", "Hypothesis", "Prediction", "Experimentation", "Conclusion"].map((step, index) => (
+                    <div key={step} className="flex items-center gap-3">
+                      <div className="w-8 h-8 bg-gradient-primary rounded-full flex items-center justify-center shrink-0">
+                        <span className="text-white text-sm font-semibold">{index + 1}</span>
+                      </div>
+                      <span className="text-foreground font-medium">{step}</span>
+                    </div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </div>
