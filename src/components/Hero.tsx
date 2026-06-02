@@ -61,8 +61,13 @@ const Hero = () => {
             }>
 
             <div className="space-y-4">
-              <h1 className="text-4xl md:text-6xl font-bold text-foreground leading-tight">
-                Hari prasad S
+              <div className="flex items-center gap-3">
+                {/* Logo placeholder — replace this circle with your logo image */}
+                <div className="w-12 h-12 rounded-full bg-primary flex items-center justify-center text-primary-foreground text-base font-bold">
+                  HP
+                </div>
+                <h1 className="text-4xl md:text-6xl font-bold text-foreground leading-tight">
+                  Hari prasad S
                 <span className="block bg-gradient-primary bg-clip-text text-transparent text-4xl min-h-[2.5rem] mt-[20px]">
                   {displayed}
                   <span className="inline-block w-0.5 h-8 bg-primary ml-1 animate-pulse align-middle" />

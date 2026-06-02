@@ -28,7 +28,13 @@ const Footer = () => {
         <div className="grid md:grid-cols-3 gap-10 mb-10">
           {/* Brand */}
           <div>
-            <div className="text-xl font-bold text-foreground mb-3">Hari Prasad</div>
+            <div className="flex items-center gap-2 mb-3">
+              {/* Logo placeholder — replace this circle with your logo image */}
+              <div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-primary-foreground text-sm font-bold">
+                HP
+              </div>
+              <div className="text-xl font-bold text-foreground">Hari Prasad</div>
+            </div>
             <p className="text-muted-foreground text-sm leading-relaxed">
               Independent researcher specializing in experimental engineering, embedded systems, and scientific prototype development.
             
