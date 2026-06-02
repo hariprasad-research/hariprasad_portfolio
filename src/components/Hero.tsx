@@ -73,7 +73,8 @@ const Hero = () => {
                   <span className="inline-block w-0.5 h-8 bg-primary ml-1 animate-pulse align-middle" />
                 </span>
               </h1>
-              <p className="text-xl text-muted-foreground max-w-lg">
+            </div>
+            <p className="text-xl text-muted-foreground max-w-lg">
                 Conducting independent research in embedded systems, experimental engineering, and prototype system development, with a focus on translating scientific concepts into functional real-world technologies.
               
               </p>
