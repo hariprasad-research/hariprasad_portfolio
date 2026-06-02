@@ -70,10 +70,8 @@ const Hero = () => {
               </h1>
             </div>
             <p className="text-xl text-muted-foreground max-w-lg">
-                Conducting independent research in embedded systems, experimental engineering, and prototype system development, with a focus on translating scientific concepts into functional real-world technologies.
-              
-              </p>
-            </div>
+              Conducting independent research in embedded systems, experimental engineering, and prototype system development, with a focus on translating scientific concepts into functional real-world technologies.
+            </p>
 
             <div className="flex flex-col sm:flex-row gap-4">
               <Button
