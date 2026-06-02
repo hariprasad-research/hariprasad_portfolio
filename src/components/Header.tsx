@@ -26,8 +26,12 @@ const Header = () => {
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b">
       <div className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
-          <div className="text-xl font-bold text-foreground">
-            Portfolio
+          <div className="flex items-center gap-2">
+            {/* Logo placeholder — replace this circle with your logo image */}
+            <div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-primary-foreground text-sm font-bold">
+              HP
+            </div>
+            <span className="text-xl font-bold text-foreground">Portfolio</span>
           </div>
           
           {/* Desktop Navigation */}
