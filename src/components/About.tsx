@@ -1,6 +1,22 @@
-import { Brain, Microscope, Lightbulb, Code } from 'lucide-react';
+import { Brain, Microscope, Lightbulb, Code, Trophy, HeartPulse, Medal } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import useScrollReveal from '@/hooks/useScrollReveal';
+import useCountUp from '@/hooks/useCountUp';
+
+const MetricCounter = ({ value, label, start }: { value: number; label: string; start: boolean }) => {
+  const count = useCountUp(value, start);
+  return (
+    <div className="text-center">
+      <div className="text-2xl font-bold text-primary">{count}+</div>
+      <div className="text-sm text-muted-foreground">{label}</div>
+    </div>
+  );
+};
+
+const honors = [
+  { icon: Trophy, title: 'World Record Holder', subtitle: 'Distinction' },
+  { icon: HeartPulse, title: 'Certified First Aid Responder', subtitle: 'Certification' },
+  { icon: Medal, title: 'National Martial Artist', subtitle: 'Achievement' }];
 
 const About = () => {
   const { ref, visible } = useScrollReveal();
@@ -79,21 +95,41 @@ const About = () => {
               <h4 className="text-lg font-semibold text-foreground mb-4">Research Metrics</h4>
               <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
                 {[
-                { value: "30+", label: "Projects Completed" },
-                { value: "5+", label: "Active Research Themes" },
-                { value: "20+", label: "Prototypes & Experiments" },
-                { value: "8+", label: "Hackathons & Exhibitions" },
-                { value: "7+", label: "Domains Explored" },
-                { value: "5+", label: "Methodologies Applied" }].
+                { value: 30, label: "Projects Completed" },
+                { value: 5, label: "Active Research Themes" },
+                { value: 20, label: "Prototypes & Experiments" },
+                { value: 8, label: "Hackathons & Exhibitions" },
+                { value: 7, label: "Domains Explored" },
+                { value: 5, label: "Methodologies Applied" }].
                 map((m) =>
-                <div key={m.label} className="text-center">
-                    <div className="text-2xl font-bold text-primary">{m.value}</div>
-                    <div className="text-sm text-muted-foreground">{m.label}</div>
-                  </div>
+                <MetricCounter key={m.label} value={m.value} label={m.label} start={visible} />
                 )}
               </div>
             </div>
           </div>
+        </div>
+
+        {/* Honors & Distinctions badges */}
+        <div
+          className={`flex flex-wrap justify-center gap-4 mt-12 transition-all duration-700 ease-out ${
+          visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`
+          }>
+
+          {honors.map((h, index) =>
+          <div
+            key={h.title}
+            className="flex items-center gap-3 rounded-full border border-primary/20 bg-card px-5 py-3 shadow-card hover:shadow-elegant transition-shadow duration-300"
+            style={{ transitionDelay: visible ? `${index * 120}ms` : '0ms' }}>
+
+              <div className="w-9 h-9 rounded-full bg-gradient-primary flex items-center justify-center shrink-0">
+                <h.icon className="h-4 w-4 text-white" />
+              </div>
+              <div className="text-left">
+                <div className="text-sm font-semibold text-foreground leading-tight">{h.title}</div>
+                <div className="text-xs text-muted-foreground">{h.subtitle}</div>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </section>);
