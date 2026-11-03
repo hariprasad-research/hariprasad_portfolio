@@ -1,11 +1,45 @@
 import { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Linkedin, Github, Instagram, Youtube, Mail, ArrowUp, Pencil } from 'lucide-react';
+import { Linkedin, Github, Instagram, Youtube, Mail, ArrowUp } from 'lucide-react';
 import { unlockAdmin } from '@/hooks/useAdminAccess';
+
+const SECRET_ORDER = ['Email', 'YouTube', 'LinkedIn', 'GitHub', 'Instagram'];
+
+const playBell = () => {
+  try {
+    const Ctx = window.AudioContext || (window as any).webkitAudioContext;
+    const ctx = new Ctx();
+    const now = ctx.currentTime;
+    [880, 1320, 1760].forEach((freq, i) => {
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.type = 'sine';
+      osc.frequency.value = freq;
+      gain.gain.setValueAtTime(0.25 / (i + 1), now);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + 1.2);
+      osc.connect(gain).connect(ctx.destination);
+      osc.start(now);
+      osc.stop(now + 1.2);
+    });
+    setTimeout(() => ctx.close(), 1500);
+  } catch {
+    // Audio unavailable
+  }
+};
+
+const socialLinks = [
+  { icon: Linkedin, label: "LinkedIn", href: "https://linkedin.com/in/dr-hari-prasad-s" },
+  { icon: Github, label: "GitHub", href: "https://github.com/hariprasad-research" },
+  { icon: Instagram, label: "Instagram", href: "https://www.instagram.com/indian_scientist_?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" },
+  { icon: Youtube, label: "YouTube", href: "https://youtube.com/@ict_labz?si=eP_82jlVnq2NbOm5" },
+  { icon: Mail, label: "Email", href: "mailto:hariprasad.researcher@gmail.com" }];
 
 const Footer = () => {
   const navigate = useNavigate();
-  const [editMode, setEditMode] = useState(false);
+  const [order, setOrder] = useState(socialLinks);
+  const [puzzle, setPuzzle] = useState(false);
+  const [picked, setPicked] = useState<number | null>(null);
+  const dragIndex = useRef<number | null>(null);
   const clicks = useRef<number[]>([]);
 
   const scrollToSection = (sectionId: string) => {
@@ -15,25 +49,53 @@ const Footer = () => {
 
   const scrollToTop = () => window.scrollTo({ top: 0, behavior: 'smooth' });
 
-  // 3 clicks within 1.5s turns "Back to top" into the hidden "Edit" button
-  const handleBackToTop = () => {
-    const now = Date.now();
-    clicks.current = [...clicks.current.filter((t) => now - t < 1500), now];
-    if (clicks.current.length >= 3) {
-      clicks.current = [];
-      setEditMode(true);
-      setTimeout(() => setEditMode(false), 10000);
-      return;
-    }
-    scrollToTop();
+  const swap = (a: number, b: number) => {
+    if (a === b) return;
+    setOrder((prev) => {
+      const next = [...prev];
+      [next[a], next[b]] = [next[b], next[a]];
+      return next;
+    });
   };
 
-  const socialLinks = [
-  { icon: Linkedin, label: "LinkedIn", href: "https://linkedin.com/in/dr-hari-prasad-s" },
-  { icon: Github, label: "GitHub", href: "https://github.com/hariprasad-research" },
-  { icon: Instagram, label: "Instagram", href: "https://www.instagram.com/indian_scientist_?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" },
-  { icon: Youtube, label: "YouTube", href: "https://youtube.com/@ict_labz?si=eP_82jlVnq2NbOm5" },
-  { icon: Mail, label: "Email", href: "mailto:hariprasad.researcher@gmail.com" }];
+  const resetPuzzle = () => {
+    setPuzzle(false);
+    setPicked(null);
+    setOrder(socialLinks);
+  };
+
+  const handleConnect = () => {
+    playBell();
+    if (puzzle) {
+      const ok = order.map((o) => o.label).join() === SECRET_ORDER.join();
+      resetPuzzle();
+      if (ok) {
+        unlockAdmin();
+        navigate('/admin');
+      } else {
+        console.log('%cNice try... but you are not me! 🕵️‍♂️', 'color:#3b82f6;font-size:14px;font-weight:bold;');
+        navigate('/');
+        scrollToTop();
+      }
+      return;
+    }
+    const now = Date.now();
+    clicks.current = [...clicks.current.filter((t) => now - t < 3000), now];
+    if (clicks.current.length >= 5) {
+      clicks.current = [];
+      setPuzzle(true);
+    }
+  };
+
+  const handleIconClick = (e: React.MouseEvent, i: number) => {
+    if (!puzzle) return;
+    e.preventDefault();
+    if (picked === null) setPicked(i);
+    else {
+      swap(picked, i);
+      setPicked(null);
+    }
+  };
 
 
   const navLinks = [
@@ -82,20 +144,33 @@ const Footer = () => {
 
           {/* Social Links */}
           <div>
-            <h4 className="text-sm font-semibold text-foreground uppercase tracking-wider mb-4">
+            <h4
+              onClick={handleConnect}
+              className="text-sm font-semibold text-foreground uppercase tracking-wider mb-4 cursor-default select-none">
               Connect
             </h4>
             <div className="flex flex-wrap gap-3">
-              {socialLinks.map((item) =>
+              {order.map((item, i) =>
               <a
                 key={item.label}
                 href={item.href}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={item.label}
-                className="w-10 h-10 bg-gradient-primary rounded-lg flex items-center justify-center hover:opacity-80 transition-opacity">
+                draggable={puzzle}
+                onClick={(e) => handleIconClick(e, i)}
+                onDragStart={() => { dragIndex.current = i; }}
+                onDragOver={(e) => puzzle && e.preventDefault()}
+                onDrop={(e) => {
+                  e.preventDefault();
+                  if (dragIndex.current !== null) swap(dragIndex.current, i);
+                  dragIndex.current = null;
+                }}
+                className={`w-10 h-10 bg-gradient-primary rounded-lg flex items-center justify-center hover:opacity-80 transition-all ${
+                  puzzle ? 'cursor-move animate-pulse ring-2 ring-primary/40' : ''
+                } ${picked === i ? 'ring-4 ring-primary scale-110' : ''}`}>
 
-                  <item.icon className="h-4 w-4 text-white" />
+                  <item.icon className="h-4 w-4 text-primary-foreground" />
                 </a>
               )}
             </div>
@@ -107,23 +182,13 @@ const Footer = () => {
           <p className="text-sm text-muted-foreground text-center sm:text-left">
             © {new Date().getFullYear()} Hari Prasad. All rights reserved.
           </p>
-          {editMode ? (
-            <button
-              onClick={() => { unlockAdmin(); navigate('/admin'); }}
-              className="flex items-center gap-2 text-sm text-primary font-semibold hover:opacity-80 transition-opacity"
-              aria-label="Edit console">
-              <Pencil className="h-4 w-4" />
-              Edit
-            </button>
-          ) : (
-            <button
-              onClick={handleBackToTop}
-              className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors"
-              aria-label="Back to top">
-              <ArrowUp className="h-4 w-4" />
-              Back to top
-            </button>
-          )}
+          <button
+            onClick={scrollToTop}
+            className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors"
+            aria-label="Back to top">
+            <ArrowUp className="h-4 w-4" />
+            Back to top
+          </button>
         </div>
       </div>
     </footer>);
