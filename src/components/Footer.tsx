@@ -144,20 +144,33 @@ const Footer = () => {
 
           {/* Social Links */}
           <div>
-            <h4 className="text-sm font-semibold text-foreground uppercase tracking-wider mb-4">
+            <h4
+              onClick={handleConnect}
+              className="text-sm font-semibold text-foreground uppercase tracking-wider mb-4 cursor-default select-none">
               Connect
             </h4>
             <div className="flex flex-wrap gap-3">
-              {socialLinks.map((item) =>
+              {order.map((item, i) =>
               <a
                 key={item.label}
                 href={item.href}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={item.label}
-                className="w-10 h-10 bg-gradient-primary rounded-lg flex items-center justify-center hover:opacity-80 transition-opacity">
+                draggable={puzzle}
+                onClick={(e) => handleIconClick(e, i)}
+                onDragStart={() => { dragIndex.current = i; }}
+                onDragOver={(e) => puzzle && e.preventDefault()}
+                onDrop={(e) => {
+                  e.preventDefault();
+                  if (dragIndex.current !== null) swap(dragIndex.current, i);
+                  dragIndex.current = null;
+                }}
+                className={`w-10 h-10 bg-gradient-primary rounded-lg flex items-center justify-center hover:opacity-80 transition-all ${
+                  puzzle ? 'cursor-move animate-pulse ring-2 ring-primary/40' : ''
+                } ${picked === i ? 'ring-4 ring-primary scale-110' : ''}`}>
 
-                  <item.icon className="h-4 w-4 text-white" />
+                  <item.icon className="h-4 w-4 text-primary-foreground" />
                 </a>
               )}
             </div>
@@ -169,23 +182,13 @@ const Footer = () => {
           <p className="text-sm text-muted-foreground text-center sm:text-left">
             © {new Date().getFullYear()} Hari Prasad. All rights reserved.
           </p>
-          {editMode ? (
-            <button
-              onClick={() => { unlockAdmin(); navigate('/admin'); }}
-              className="flex items-center gap-2 text-sm text-primary font-semibold hover:opacity-80 transition-opacity"
-              aria-label="Edit console">
-              <Pencil className="h-4 w-4" />
-              Edit
-            </button>
-          ) : (
-            <button
-              onClick={handleBackToTop}
-              className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors"
-              aria-label="Back to top">
-              <ArrowUp className="h-4 w-4" />
-              Back to top
-            </button>
-          )}
+          <button
+            onClick={scrollToTop}
+            className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors"
+            aria-label="Back to top">
+            <ArrowUp className="h-4 w-4" />
+            Back to top
+          </button>
         </div>
       </div>
     </footer>);
