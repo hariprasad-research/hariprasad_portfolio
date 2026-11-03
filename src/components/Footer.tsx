@@ -1,11 +1,45 @@
 import { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Linkedin, Github, Instagram, Youtube, Mail, ArrowUp, Pencil } from 'lucide-react';
+import { Linkedin, Github, Instagram, Youtube, Mail, ArrowUp } from 'lucide-react';
 import { unlockAdmin } from '@/hooks/useAdminAccess';
+
+const SECRET_ORDER = ['Email', 'YouTube', 'LinkedIn', 'GitHub', 'Instagram'];
+
+const playBell = () => {
+  try {
+    const Ctx = window.AudioContext || (window as any).webkitAudioContext;
+    const ctx = new Ctx();
+    const now = ctx.currentTime;
+    [880, 1320, 1760].forEach((freq, i) => {
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.type = 'sine';
+      osc.frequency.value = freq;
+      gain.gain.setValueAtTime(0.25 / (i + 1), now);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + 1.2);
+      osc.connect(gain).connect(ctx.destination);
+      osc.start(now);
+      osc.stop(now + 1.2);
+    });
+    setTimeout(() => ctx.close(), 1500);
+  } catch {
+    // Audio unavailable
+  }
+};
+
+const socialLinks = [
+  { icon: Linkedin, label: "LinkedIn", href: "https://linkedin.com/in/dr-hari-prasad-s" },
+  { icon: Github, label: "GitHub", href: "https://github.com/hariprasad-research" },
+  { icon: Instagram, label: "Instagram", href: "https://www.instagram.com/indian_scientist_?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" },
+  { icon: Youtube, label: "YouTube", href: "https://youtube.com/@ict_labz?si=eP_82jlVnq2NbOm5" },
+  { icon: Mail, label: "Email", href: "mailto:hariprasad.researcher@gmail.com" }];
 
 const Footer = () => {
   const navigate = useNavigate();
-  const [editMode, setEditMode] = useState(false);
+  const [order, setOrder] = useState(socialLinks);
+  const [puzzle, setPuzzle] = useState(false);
+  const [picked, setPicked] = useState<number | null>(null);
+  const dragIndex = useRef<number | null>(null);
   const clicks = useRef<number[]>([]);
 
   const scrollToSection = (sectionId: string) => {
@@ -15,25 +49,53 @@ const Footer = () => {
 
   const scrollToTop = () => window.scrollTo({ top: 0, behavior: 'smooth' });
 
-  // 3 clicks within 1.5s turns "Back to top" into the hidden "Edit" button
-  const handleBackToTop = () => {
-    const now = Date.now();
-    clicks.current = [...clicks.current.filter((t) => now - t < 1500), now];
-    if (clicks.current.length >= 3) {
-      clicks.current = [];
-      setEditMode(true);
-      setTimeout(() => setEditMode(false), 10000);
-      return;
-    }
-    scrollToTop();
+  const swap = (a: number, b: number) => {
+    if (a === b) return;
+    setOrder((prev) => {
+      const next = [...prev];
+      [next[a], next[b]] = [next[b], next[a]];
+      return next;
+    });
   };
 
-  const socialLinks = [
-  { icon: Linkedin, label: "LinkedIn", href: "https://linkedin.com/in/dr-hari-prasad-s" },
-  { icon: Github, label: "GitHub", href: "https://github.com/hariprasad-research" },
-  { icon: Instagram, label: "Instagram", href: "https://www.instagram.com/indian_scientist_?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" },
-  { icon: Youtube, label: "YouTube", href: "https://youtube.com/@ict_labz?si=eP_82jlVnq2NbOm5" },
-  { icon: Mail, label: "Email", href: "mailto:hariprasad.researcher@gmail.com" }];
+  const resetPuzzle = () => {
+    setPuzzle(false);
+    setPicked(null);
+    setOrder(socialLinks);
+  };
+
+  const handleConnect = () => {
+    playBell();
+    if (puzzle) {
+      const ok = order.map((o) => o.label).join() === SECRET_ORDER.join();
+      resetPuzzle();
+      if (ok) {
+        unlockAdmin();
+        navigate('/admin');
+      } else {
+        console.log('%cNice try... but you are not me! 🕵️‍♂️', 'color:#3b82f6;font-size:14px;font-weight:bold;');
+        navigate('/');
+        scrollToTop();
+      }
+      return;
+    }
+    const now = Date.now();
+    clicks.current = [...clicks.current.filter((t) => now - t < 3000), now];
+    if (clicks.current.length >= 5) {
+      clicks.current = [];
+      setPuzzle(true);
+    }
+  };
+
+  const handleIconClick = (e: React.MouseEvent, i: number) => {
+    if (!puzzle) return;
+    e.preventDefault();
+    if (picked === null) setPicked(i);
+    else {
+      swap(picked, i);
+      setPicked(null);
+    }
+  };
 
 
   const navLinks = [
