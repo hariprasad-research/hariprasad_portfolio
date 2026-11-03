@@ -46,7 +46,7 @@ export const AdminShortcutAccess = () => {
 
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
-      if (e.ctrlKey && e.altKey && e.shiftKey && (e.key === 'h' || e.key === 'H')) {
+      if ((e.ctrlKey || e.metaKey) && e.altKey && e.shiftKey && e.code === 'KeyH') {
         e.preventDefault();
         unlockAdmin();
         navigate('/admin');
