@@ -1,12 +1,32 @@
-import { Linkedin, Github, Instagram, Youtube, Mail, ArrowUp } from 'lucide-react';
+import { useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Linkedin, Github, Instagram, Youtube, Mail, ArrowUp, Pencil } from 'lucide-react';
+import { unlockAdmin } from '@/hooks/useAdminAccess';
 
 const Footer = () => {
+  const navigate = useNavigate();
+  const [editMode, setEditMode] = useState(false);
+  const clicks = useRef<number[]>([]);
+
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) element.scrollIntoView({ behavior: 'smooth' });
   };
 
   const scrollToTop = () => window.scrollTo({ top: 0, behavior: 'smooth' });
+
+  // 3 clicks within 1.5s turns "Back to top" into the hidden "Edit" button
+  const handleBackToTop = () => {
+    const now = Date.now();
+    clicks.current = [...clicks.current.filter((t) => now - t < 1500), now];
+    if (clicks.current.length >= 3) {
+      clicks.current = [];
+      setEditMode(true);
+      setTimeout(() => setEditMode(false), 10000);
+      return;
+    }
+    scrollToTop();
+  };
 
   const socialLinks = [
   { icon: Linkedin, label: "LinkedIn", href: "https://linkedin.com/in/dr-hari-prasad-s" },
@@ -87,14 +107,23 @@ const Footer = () => {
           <p className="text-sm text-muted-foreground text-center sm:text-left">
             © {new Date().getFullYear()} Hari Prasad. All rights reserved.
           </p>
-          <button
-            onClick={scrollToTop}
-            className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors"
-            aria-label="Back to top">
-
-            <ArrowUp className="h-4 w-4" />
-            Back to top
-          </button>
+          {editMode ? (
+            <button
+              onClick={() => { unlockAdmin(); navigate('/admin'); }}
+              className="flex items-center gap-2 text-sm text-primary font-semibold hover:opacity-80 transition-opacity"
+              aria-label="Edit console">
+              <Pencil className="h-4 w-4" />
+              Edit
+            </button>
+          ) : (
+            <button
+              onClick={handleBackToTop}
+              className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors"
+              aria-label="Back to top">
+              <ArrowUp className="h-4 w-4" />
+              Back to top
+            </button>
+          )}
         </div>
       </div>
     </footer>);
