@@ -14,7 +14,96 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      projects: {
+        Row: {
+          approach: string[]
+          category: string
+          created_at: string
+          description: string
+          id: string
+          images: string[]
+          is_featured: boolean
+          objective: string
+          problem_statement: string
+          report_url: string
+          results: string[]
+          sort_order: number
+          status: string
+          tags: string[]
+          title: string
+          type: string
+          updated_at: string
+          video_url: string
+        }
+        Insert: {
+          approach?: string[]
+          category?: string
+          created_at?: string
+          description?: string
+          id?: string
+          images?: string[]
+          is_featured?: boolean
+          objective?: string
+          problem_statement?: string
+          report_url?: string
+          results?: string[]
+          sort_order?: number
+          status?: string
+          tags?: string[]
+          title: string
+          type?: string
+          updated_at?: string
+          video_url?: string
+        }
+        Update: {
+          approach?: string[]
+          category?: string
+          created_at?: string
+          description?: string
+          id?: string
+          images?: string[]
+          is_featured?: boolean
+          objective?: string
+          problem_statement?: string
+          report_url?: string
+          results?: string[]
+          sort_order?: number
+          status?: string
+          tags?: string[]
+          title?: string
+          type?: string
+          updated_at?: string
+          video_url?: string
+        }
+        Relationships: []
+      }
+      skills: {
+        Row: {
+          created_at: string
+          id: string
+          kind: string
+          label: string
+          size: string
+          sort_order: number
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          kind: string
+          label: string
+          size?: string
+          sort_order?: number
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          kind?: string
+          label?: string
+          size?: string
+          sort_order?: number
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
