@@ -430,7 +430,7 @@ const AdminPage = () => {
   const navigate = useNavigate();
   const { toast } = useToast();
 
-  const { data: projects = [], isPlaceholderData } = useProjects();
+  const { data: projects = [] } = useProjects();
   const { data: skillData, isPlaceholderData: skillsPlaceholder } = useSkills();
   const invalidate = useInvalidateSiteData();
   const [tech, setTech] = useState<SkillTag[]>([]);
