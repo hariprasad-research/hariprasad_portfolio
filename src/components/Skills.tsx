@@ -27,6 +27,9 @@ const TagCloud = ({ tags, animate, offset = 0 }: { tags: { label: string; size: 
 );
 
 const Skills = () => {
+  const { data } = useSkills();
+  const technicalTags = data?.technical ?? [];
+  const softSkillTags = data?.soft ?? [];
   const [animate, setAnimate] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
 
