@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { technicalTags, softSkillTags } from '@/data/skills';
+import { useSkills } from '@/hooks/useSiteData';
 
 const tagSizeMap = {
   sm: "text-xs px-3 py-1.5",
