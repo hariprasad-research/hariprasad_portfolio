@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { technicalTags, softSkillTags } from '@/data/skills';
+import { useSkills } from '@/hooks/useSiteData';
 
 const tagSizeMap = {
   sm: "text-xs px-3 py-1.5",
@@ -27,6 +27,9 @@ const TagCloud = ({ tags, animate, offset = 0 }: { tags: { label: string; size: 
 );
 
 const Skills = () => {
+  const { data } = useSkills();
+  const technicalTags = data?.technical ?? [];
+  const softSkillTags = data?.soft ?? [];
   const [animate, setAnimate] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
 

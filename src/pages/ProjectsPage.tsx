@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import Header from '@/components/Header';
 import { useState } from 'react';
 import ProjectFlashcard, { ProjectDetails } from '@/components/ProjectFlashcard';
-import { getProjectsByCategory } from '@/data/projects';
+import { useProjects, groupByCategory } from '@/hooks/useSiteData';
 
 const getStatusColor = (status: string) => {
   switch (status) {
@@ -22,7 +22,8 @@ const getStatusColor = (status: string) => {
 
 const ProjectsPage = () => {
   const [selectedProject, setSelectedProject] = useState<ProjectDetails | null>(null);
-  const categoryGroups = getProjectsByCategory();
+  const { data: allProjects = [] } = useProjects();
+  const categoryGroups = groupByCategory(allProjects);
 
   return (
     <div className="min-h-screen bg-background">
@@ -43,7 +44,7 @@ const ProjectsPage = () => {
               Project Archive
             </h1>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-              A comprehensive collection of 21 projects spanning electronics, aerospace, sustainability, AI, and safety systems — each addressing a unique challenge through interdisciplinary research.
+              A comprehensive collection of {allProjects.length} projects spanning electronics, aerospace, sustainability, AI, and safety systems — each addressing a unique challenge through interdisciplinary research.
             </p>
           </div>
 

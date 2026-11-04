@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
   Plus, Pencil, Trash2, LogOut, Lock, Search, X, Save, FolderOpen, Tags as TagsIcon, Database
@@ -22,14 +22,16 @@ import {
 } from '@/components/ui/select';
 import { useToast } from '@/hooks/use-toast';
 import { AdminGuard, lockAdmin } from '@/hooks/useAdminAccess';
-import allProjects, { categories } from '@/data/projects';
-import { technicalTags, softSkillTags, SkillTag } from '@/data/skills';
+import { categories } from '@/data/projects';
+import { SkillTag } from '@/data/skills';
+import { supabase } from '@/integrations/supabase/client';
+import { useProjects, useSkills, toRow, saveSkillList, useInvalidateSiteData, DbProject } from '@/hooks/useSiteData';
 import { ProjectDetails } from '@/components/ProjectFlashcard';
 
 const STATUSES = ["Published", "Completed", "Open Source", "In Development", "Patent Pending", "Prototype"];
 const TAG_SIZES = ["sm", "md", "lg"];
 
-type AdminProject = ProjectDetails & { id: string };
+type AdminProject = DbProject;
 
 interface Draft {
   id?: string;
@@ -428,11 +430,19 @@ const AdminPage = () => {
   const navigate = useNavigate();
   const { toast } = useToast();
 
-  const [projects, setProjects] = useState<AdminProject[]>(() =>
-    allProjects.map((p, i) => ({ ...p, id: `p${i + 1}` }))
-  );
-  const [tech, setTech] = useState<SkillTag[]>(technicalTags);
-  const [soft, setSoft] = useState<SkillTag[]>(softSkillTags);
+  const { data: projects = [] } = useProjects();
+  const { data: skillData, isPlaceholderData: skillsPlaceholder } = useSkills();
+  const invalidate = useInvalidateSiteData();
+  const [tech, setTech] = useState<SkillTag[]>([]);
+  const [soft, setSoft] = useState<SkillTag[]>([]);
+  const [skillsDirty, setSkillsDirty] = useState(false);
+  const [busy, setBusy] = useState(false);
+  useEffect(() => {
+    if (skillData && !skillsPlaceholder && !skillsDirty) {
+      setTech(skillData.technical);
+      setSoft(skillData.soft);
+    }
+  }, [skillData, skillsPlaceholder, skillsDirty]);
   const [search, setSearch] = useState("");
   const [editorOpen, setEditorOpen] = useState(false);
   const [draft, setDraft] = useState<Draft>(emptyDraft);
@@ -487,7 +497,7 @@ const AdminPage = () => {
     setEditorOpen(true);
   };
 
-  const saveProject = () => {
+  const saveProject = async () => {
     const clean = {
       title: draft.title.trim(),
       description: draft.description.trim(),
@@ -504,25 +514,55 @@ const AdminPage = () => {
       reportUrl: draft.reportUrl.trim()
     };
 
-    if (isNew) {
-      setProjects((prev) => [...prev, { ...clean, id: `p-${Date.now()}` }]);
-      toast({ title: "Project added", description: "“" + clean.title + "” added to the list." });
-    } else {
-      setProjects((prev) => prev.map((p) => (p.id === draft.id ? { ...p, ...clean } : p)));
-      toast({ title: "Project saved", description: "“" + clean.title + "” updated." });
+    setBusy(true);
+    const existing = projects.find((p) => p.id === draft.id);
+    const row = toRow({
+      ...clean,
+      isFeatured: existing?.isFeatured ?? false,
+      sortOrder: existing?.sortOrder ?? projects.reduce((m, p) => Math.max(m, p.sortOrder), -1) + 1,
+    });
+    const { error } = isNew
+      ? await supabase.from('projects').insert(row)
+      : await supabase.from('projects').update(row).eq('id', draft.id!);
+    setBusy(false);
+    if (error) {
+      toast({ title: "Save failed", description: error.message, variant: "destructive" });
+      return;
     }
+    await invalidate();
+    toast({ title: isNew ? "Project added" : "Project saved", description: "“" + clean.title + "” is live on the site." });
     setEditorOpen(false);
   };
 
-  const confirmDelete = () => {
+  const confirmDelete = async () => {
     if (!deleteTarget) return;
-    setProjects((prev) => prev.filter((p) => p.id !== deleteTarget.id));
+    const { error } = await supabase.from('projects').delete().eq('id', deleteTarget.id);
+    if (error) {
+      toast({ title: "Delete failed", description: error.message, variant: "destructive" });
+      return;
+    }
+    await invalidate();
     toast({
       title: "Project deleted",
       description: "“" + deleteTarget.title + "” removed.",
       variant: "destructive"
     });
     setDeleteTarget(null);
+  };
+
+  const saveSkills = async () => {
+    setBusy(true);
+    try {
+      await saveSkillList('technical', tech);
+      await saveSkillList('soft', soft);
+      setSkillsDirty(false);
+      await invalidate();
+      toast({ title: "Skills saved", description: "Your skills are live on the site." });
+    } catch (e) {
+      toast({ title: "Save failed", description: (e as Error).message, variant: "destructive" });
+    } finally {
+      setBusy(false);
+    }
   };
 
   const exitAdmin = () => {
@@ -542,12 +582,12 @@ const AdminPage = () => {
               </div>
               <div>
                 <h1 className="text-lg font-bold text-foreground leading-tight">Admin Console</h1>
-                <p className="text-xs text-muted-foreground">Local preview — changes live in this session only</p>
+                <p className="text-xs text-muted-foreground">Changes save to the database and appear on the live site</p>
               </div>
             </div>
             <div className="flex items-center gap-2">
               <Badge variant="outline" className="hidden sm:flex gap-1.5 text-xs">
-                <Database className="h-3 w-3" /> Step 1: UI only
+                <Database className="h-3 w-3" /> Connected
               </Badge>
               <Button variant="outline" size="sm" onClick={exitAdmin} className="gap-1.5">
                 <LogOut className="h-4 w-4" /> Exit & Lock
@@ -639,8 +679,16 @@ const AdminPage = () => {
 
             {/* ── Skills tab ── */}
             <TabsContent value="skills" className="space-y-6">
-              <SkillTagEditor title="Technical Proficiency" tags={tech} onChange={setTech} />
-              <SkillTagEditor title="Soft Skills & Mindset" tags={soft} onChange={setSoft} />
+              <div className="flex items-center justify-between gap-3">
+                <p className="text-sm text-muted-foreground">
+                  {skillsDirty ? "You have unsaved skill changes." : "All skill changes are saved."}
+                </p>
+                <Button onClick={saveSkills} disabled={!skillsDirty || busy} className="gap-2">
+                  <Save className="h-4 w-4" /> Save Skills
+                </Button>
+              </div>
+              <SkillTagEditor title="Technical Proficiency" tags={tech} onChange={(t) => { setTech(t); setSkillsDirty(true); }} />
+              <SkillTagEditor title="Soft Skills & Mindset" tags={soft} onChange={(t) => { setSoft(t); setSkillsDirty(true); }} />
             </TabsContent>
           </Tabs>
         </main>

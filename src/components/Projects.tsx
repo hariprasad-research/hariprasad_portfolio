@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import ProjectFlashcard, { ProjectDetails } from './ProjectFlashcard';
 import useScrollReveal from '@/hooks/useScrollReveal';
-import { getFeaturedProjects } from '@/data/projects';
+import { useProjects } from '@/hooks/useSiteData';
 
 const getStatusColor = (status: string) => {
   switch (status) {
@@ -23,7 +23,8 @@ const getStatusColor = (status: string) => {
 const Projects = () => {
   const [selectedProject, setSelectedProject] = useState<ProjectDetails | null>(null);
   const { ref, visible } = useScrollReveal();
-  const projects = getFeaturedProjects();
+  const { data: all = [] } = useProjects();
+  const projects = all.filter((p) => p.isFeatured);
 
   return (
     <section id="projects" ref={ref} className="py-20 bg-gradient-subtle">
