@@ -86,7 +86,7 @@ export const saveSkillList = async (kind: 'technical' | 'soft', tags: SkillTag[]
 export type SettingKey = 'hero_roles' | 'metrics' | 'honors';
 
 const useSetting = <T extends object>(key: SettingKey, fallback: T) =>
-  useQuery({
+  useQuery<T>({
     queryKey: ['site_settings', key],
     queryFn: async () => {
       const { data, error } = await supabase.from('site_settings').select('value').eq('key', key).maybeSingle();
