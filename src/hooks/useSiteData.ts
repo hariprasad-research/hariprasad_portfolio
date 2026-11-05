@@ -93,7 +93,7 @@ const useSetting = <T extends object>(key: SettingKey, fallback: T) =>
       if (error) throw error;
       return (data?.value as T | undefined) ?? fallback;
     },
-    placeholderData: fallback,
+    placeholderData: fallback as never,
   });
 
 export const useHeroRoles = () => useSetting<string[]>('hero_roles', defaultRoles);
