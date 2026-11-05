@@ -85,7 +85,7 @@ export const saveSkillList = async (kind: 'technical' | 'soft', tags: SkillTag[]
 
 export type SettingKey = 'hero_roles' | 'metrics' | 'honors';
 
-const useSetting = <T,>(key: SettingKey, fallback: T) =>
+const useSetting = <T extends object>(key: SettingKey, fallback: T) =>
   useQuery({
     queryKey: ['site_settings', key],
     queryFn: async () => {
