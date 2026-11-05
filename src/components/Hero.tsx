@@ -17,7 +17,7 @@ const Hero = () => {
   const { ref, visible } = useScrollReveal(0.05);
 
   useEffect(() => {
-    const currentRole = roles[roleIndex];
+    const currentRole = roles[roleIndex % roles.length];
     let timeout: ReturnType<typeof setTimeout>;
 
     if (!isDeleting && charIndex <= currentRole.length) {
@@ -38,7 +38,7 @@ const Hero = () => {
     }
 
     return () => clearTimeout(timeout);
-  }, [charIndex, isDeleting, roleIndex]);
+  }, [charIndex, isDeleting, roleIndex, roles]);
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
