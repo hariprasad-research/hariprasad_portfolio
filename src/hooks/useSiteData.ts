@@ -3,6 +3,7 @@ import { supabase } from '@/integrations/supabase/client';
 import { ProjectDetails } from '@/components/ProjectFlashcard';
 import allProjects, { categories, getFeaturedProjects } from '@/data/projects';
 import { technicalTags, softSkillTags, SkillTag } from '@/data/skills';
+import { defaultRoles, defaultMetrics, defaultHonors, Metric, Honor } from '@/data/siteContent';
 
 export interface DbProject extends ProjectDetails {
   id: string;
@@ -82,9 +83,32 @@ export const saveSkillList = async (kind: 'technical' | 'soft', tags: SkillTag[]
   }
 };
 
+export type SettingKey = 'hero_roles' | 'metrics' | 'honors';
+
+const useSetting = <T,>(key: SettingKey, fallback: T) =>
+  useQuery({
+    queryKey: ['site_settings', key],
+    queryFn: async () => {
+      const { data, error } = await supabase.from('site_settings').select('value').eq('key', key).maybeSingle();
+      if (error) throw error;
+      return (data?.value as T | undefined) ?? fallback;
+    },
+    placeholderData: fallback,
+  });
+
+export const useHeroRoles = () => useSetting<string[]>('hero_roles', defaultRoles);
+export const useMetrics = () => useSetting<Metric[]>('metrics', defaultMetrics);
+export const useHonors = () => useSetting<Honor[]>('honors', defaultHonors);
+
+export const saveSetting = async (key: SettingKey, value: unknown) => {
+  const { error } = await supabase.from('site_settings').upsert({ key, value: value as never });
+  if (error) throw error;
+};
+
 export const useInvalidateSiteData = () => {
   const qc = useQueryClient();
   return () => Promise.all([
+    qc.invalidateQueries({ queryKey: ['site_settings'] }),
     qc.invalidateQueries({ queryKey: ['projects'] }),
     qc.invalidateQueries({ queryKey: ['skills'] }),
   ]);

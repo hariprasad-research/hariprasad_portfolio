@@ -11,6 +11,15 @@ export const defaultRoles: string[] = [
   'World Record Holder',
 ];
 
+export const defaultMetrics: Metric[] = [
+  { value: 30, label: 'Projects Completed' },
+  { value: 5, label: 'Active Research Themes' },
+  { value: 20, label: 'Prototypes & Experiments' },
+  { value: 8, label: 'Hackathons & Exhibitions' },
+  { value: 7, label: 'Domains Explored' },
+  { value: 5, label: 'Methodologies Applied' },
+];
+
 export const defaultHonors: Honor[] = [
   { icon: 'Trophy', title: 'World Record Holder', subtitle: 'Distinction' },
   { icon: 'HeartPulse', title: 'Certified First Aid Responder', subtitle: 'Certification' },
