@@ -2,6 +2,8 @@ import { Brain, Microscope, Lightbulb, Code, Trophy, HeartPulse, Medal } from 'l
 import { Card, CardContent } from '@/components/ui/card';
 import useScrollReveal from '@/hooks/useScrollReveal';
 import useCountUp from '@/hooks/useCountUp';
+import { useMetrics, useHonors } from '@/hooks/useSiteData';
+import { iconMap } from '@/lib/honorIcons';
 
 const MetricCounter = ({ value, label, start }: { value: number; label: string; start: boolean }) => {
   const count = useCountUp(value, start);
@@ -13,13 +15,10 @@ const MetricCounter = ({ value, label, start }: { value: number; label: string; 
   );
 };
 
-const honors = [
-  { icon: Trophy, title: 'World Record Holder', subtitle: 'Distinction' },
-  { icon: HeartPulse, title: 'Certified First Aid Responder', subtitle: 'Certification' },
-  { icon: Medal, title: 'National Martial Artist', subtitle: 'Achievement' }];
-
 const About = () => {
   const { ref, visible } = useScrollReveal();
+  const { data: metrics } = useMetrics();
+  const { data: honors } = useHonors();
 
   const expertise = [
   { icon: Brain, title: "Research & Analysis", description: "Deep dive into complex problems with systematic research methodologies and data-driven insights." },
@@ -94,14 +93,7 @@ const About = () => {
             <div className="bg-card rounded-2xl p-6 shadow-card">
               <h4 className="text-lg font-semibold text-foreground mb-4">Research Metrics</h4>
               <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                {[
-                { value: 30, label: "Projects Completed" },
-                { value: 5, label: "Active Research Themes" },
-                { value: 20, label: "Prototypes & Experiments" },
-                { value: 8, label: "Hackathons & Exhibitions" },
-                { value: 7, label: "Domains Explored" },
-                { value: 5, label: "Methodologies Applied" }].
-                map((m) =>
+                {(metrics ?? []).map((m) =>
                 <MetricCounter key={m.label} value={m.value} label={m.label} start={visible} />
                 )}
               </div>
@@ -115,21 +107,23 @@ const About = () => {
           visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`
           }>
 
-          {honors.map((h, index) =>
+          {(honors ?? []).map((h, index) => {
+          const Icon = iconMap[h.icon] ?? Trophy;
+          return (
           <div
             key={h.title}
             className="flex items-center gap-3 rounded-full border border-primary/20 bg-card px-5 py-3 shadow-card hover:shadow-elegant transition-shadow duration-300"
             style={{ transitionDelay: visible ? `${index * 120}ms` : '0ms' }}>
 
               <div className="w-9 h-9 rounded-full bg-gradient-primary flex items-center justify-center shrink-0">
-                <h.icon className="h-4 w-4 text-white" />
+                <Icon className="h-4 w-4 text-white" />
               </div>
               <div className="text-left">
                 <div className="text-sm font-semibold text-foreground leading-tight">{h.title}</div>
                 <div className="text-xs text-muted-foreground">{h.subtitle}</div>
               </div>
-            </div>
-          )}
+            </div>);
+          })}
         </div>
       </div>
     </section>);

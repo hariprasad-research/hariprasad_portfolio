@@ -4,17 +4,12 @@ import heroImage from '@/assets/hero-image.jpg';
 import { useState, useEffect } from 'react';
 import useScrollReveal from '@/hooks/useScrollReveal';
 
-const roles = [
-'Independent Researcher',
-'Innovator & Builder',
-'Mechanical Engineering',
-'Certified First Aid Responder',
-'Indian Scientist (Aspirant)',
-'National Martial Artist',
-'World Record Holder'];
-
+import { useHeroRoles } from '@/hooks/useSiteData';
+import { defaultRoles } from '@/data/siteContent';
 
 const Hero = () => {
+  const { data } = useHeroRoles();
+  const roles = data && data.length ? data : defaultRoles;
   const [roleIndex, setRoleIndex] = useState(0);
   const [displayed, setDisplayed] = useState('');
   const [isDeleting, setIsDeleting] = useState(false);
@@ -22,7 +17,7 @@ const Hero = () => {
   const { ref, visible } = useScrollReveal(0.05);
 
   useEffect(() => {
-    const currentRole = roles[roleIndex];
+    const currentRole = roles[roleIndex % roles.length];
     let timeout: ReturnType<typeof setTimeout>;
 
     if (!isDeleting && charIndex <= currentRole.length) {
@@ -43,7 +38,7 @@ const Hero = () => {
     }
 
     return () => clearTimeout(timeout);
-  }, [charIndex, isDeleting, roleIndex]);
+  }, [charIndex, isDeleting, roleIndex, roles]);
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
