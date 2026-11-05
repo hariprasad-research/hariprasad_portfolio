@@ -1,8 +1,9 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
-  Plus, Pencil, Trash2, LogOut, Lock, Search, X, Save, FolderOpen, Tags as TagsIcon, Database
+  Plus, Pencil, Trash2, LogOut, Lock, Search, X, Save, FolderOpen, Tags as TagsIcon, Database, Sparkles
 } from 'lucide-react';
+import SiteContentEditor from '@/components/admin/SiteContentEditor';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -605,6 +606,9 @@ const AdminPage = () => {
               <TabsTrigger value="skills" className="gap-1.5">
                 <TagsIcon className="h-4 w-4" /> Skills ({tech.length + soft.length})
               </TabsTrigger>
+              <TabsTrigger value="content" className="gap-1.5">
+                <Sparkles className="h-4 w-4" /> Site Content
+              </TabsTrigger>
             </TabsList>
 
             {/* ── Projects tab ── */}
@@ -689,6 +693,9 @@ const AdminPage = () => {
               </div>
               <SkillTagEditor title="Technical Proficiency" tags={tech} onChange={(t) => { setTech(t); setSkillsDirty(true); }} />
               <SkillTagEditor title="Soft Skills & Mindset" tags={soft} onChange={(t) => { setSoft(t); setSkillsDirty(true); }} />
+            </TabsContent>
+            <TabsContent value="content">
+              <SiteContentEditor />
             </TabsContent>
           </Tabs>
         </main>
