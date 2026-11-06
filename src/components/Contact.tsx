@@ -2,9 +2,12 @@ import { Mail, MapPin, Phone, Send, Linkedin, Github, Instagram, Youtube } from 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import useScrollReveal from '@/hooks/useScrollReveal';
+import { useAreasOfExpertise } from '@/hooks/useSiteData';
 
 const Contact = () => {
   const { ref, visible } = useScrollReveal();
+  const { data: areasOfExpertise = [] } = useAreasOfExpertise();
+  const expertiseColumnBreak = Math.ceil(areasOfExpertise.length / 2);
 
   const contactInfo = [
     { icon: Mail, label: "Email", value: "hariprasad.researcher@gmail.com", href: "mailto:hariprasad.researcher@gmail.com" },
@@ -84,16 +87,14 @@ const Contact = () => {
               <CardContent>
                 <div className="grid grid-cols-2 gap-4 text-sm">
                   <div className="space-y-2">
-                    <div className="text-muted-foreground">• Embedded Systems & Electronics</div>
-                    <div className="text-muted-foreground">• Space Systems (Ground & Concepts)</div>
-                    <div className="text-muted-foreground">• Prototyping & Experimental Research</div>
-                    <div className="text-muted-foreground">• Sustainable Materials & Eco-Tech</div>
+                    {areasOfExpertise.slice(0, expertiseColumnBreak).map((area) => (
+                      <div key={area} className="text-muted-foreground">• {area}</div>
+                    ))}
                   </div>
                   <div className="space-y-2">
-                    <div className="text-muted-foreground">• IoT & Automation Logic</div>
-                    <div className="text-muted-foreground">• Web-Based System Interfaces</div>
-                    <div className="text-muted-foreground">• Systems Thinking & Problem Solving</div>
-                    <div className="text-muted-foreground">• Human Performance & Discipline</div>
+                    {areasOfExpertise.slice(expertiseColumnBreak).map((area) => (
+                      <div key={area} className="text-muted-foreground">• {area}</div>
+                    ))}
                   </div>
                 </div>
               </CardContent>

@@ -1,6 +1,17 @@
 export interface Metric { value: number; label: string; }
 export interface Honor { icon: string; title: string; subtitle: string; }
 
+export const defaultAreasOfExpertise: string[] = [
+  'Embedded Systems & Electronics',
+  'Space Systems (Ground & Concepts)',
+  'Prototyping & Experimental Research',
+  'Sustainable Materials & Eco-Tech',
+  'IoT & Automation Logic',
+  'Web-Based System Interfaces',
+  'Systems Thinking & Problem Solving',
+  'Human Performance & Discipline',
+];
+
 export const defaultRoles: string[] = [
   'Independent Researcher',
   'Innovator & Builder',
