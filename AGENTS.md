@@ -1,3 +1,3 @@
 - Projects and skills are read from Lovable Cloud tables via `src/hooks/useSiteData.ts`, with `src/data/*` as instant placeholder fallback — so the admin console edits the live site without code changes.
-- Database write policies on `projects`/`skills` are temporarily open until admin sign-in is added — must be locked to the admin role before treating the site as secure.
+- Database writes to `projects`, `skills`, and `site_settings` are locked until admin authentication is implemented; public reads remain enabled because these records render public portfolio content.
 - Editable site-wide content belongs in `site_settings` with static defaults, surfaced through shared hooks for the admin editor and public sections.
