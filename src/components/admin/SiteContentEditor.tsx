@@ -4,7 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { useToast } from '@/hooks/use-toast';
-import { useHeroRoles, useMetrics, useHonors, saveSetting, useInvalidateSiteData, SettingKey } from '@/hooks/useSiteData';
+import { useHeroRoles, useMetrics, useHonors, useAreasOfExpertise, saveSetting, useInvalidateSiteData, SettingKey } from '@/hooks/useSiteData';
 import { Metric, Honor, honorIconNames } from '@/data/siteContent';
 import { iconMap } from '@/lib/honorIcons';
 
@@ -47,14 +47,17 @@ const SiteContentEditor = () => {
   const { data: rolesData } = useHeroRoles();
   const { data: metricsData } = useMetrics();
   const { data: honorsData } = useHonors();
+  const { data: expertiseData } = useAreasOfExpertise();
   const [roles, setRoles] = useState<string[]>([]);
   const [metrics, setMetrics] = useState<Metric[]>([]);
   const [honors, setHonors] = useState<Honor[]>([]);
+  const [expertise, setExpertise] = useState<string[]>([]);
   const { save, saving } = useSaver();
 
   useEffect(() => { if (rolesData) setRoles(rolesData); }, [rolesData]);
   useEffect(() => { if (metricsData) setMetrics(metricsData); }, [metricsData]);
   useEffect(() => { if (honorsData) setHonors(honorsData); }, [honorsData]);
+  useEffect(() => { if (expertiseData) setExpertise(expertiseData); }, [expertiseData]);
 
   return (
     <div className="grid gap-6 lg:grid-cols-2">
@@ -156,6 +159,39 @@ const SiteContentEditor = () => {
               disabled={saving === 'honors'}
               onClick={() => save('honors', honors.filter((h) => h.title.trim()), 'Badges')}
             ><Save className="h-4 w-4 mr-1" /> Save</Button>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Areas of expertise */}
+      <Card className="lg:col-span-2">
+        <CardHeader><CardTitle className="text-lg">Areas of Expertise</CardTitle></CardHeader>
+        <CardContent className="space-y-3">
+          {expertise.map((item, i) => (
+            <div key={i} className="flex gap-2 items-center">
+              <Input
+                value={item}
+                aria-label={`Area of expertise ${i + 1}`}
+                placeholder="Area of expertise"
+                onChange={(e) => setExpertise(expertise.map((x, k) => (k === i ? e.target.value : x)))}
+              />
+              <RowControls
+                onUp={() => setExpertise(move(expertise, i, -1))}
+                onDown={() => setExpertise(move(expertise, i, 1))}
+                onDelete={() => setExpertise(expertise.filter((_, k) => k !== i))}
+              />
+            </div>
+          ))}
+          <div className="flex flex-wrap gap-2 pt-2">
+            <Button variant="outline" onClick={() => setExpertise([...expertise, ''])}>
+              <Plus className="h-4 w-4 mr-1" /> Add area
+            </Button>
+            <Button
+              disabled={saving === 'areas_of_expertise'}
+              onClick={() => save('areas_of_expertise', expertise.map((item) => item.trim()).filter(Boolean), 'Areas of expertise')}
+            >
+              <Save className="h-4 w-4 mr-1" /> Save
+            </Button>
           </div>
         </CardContent>
       </Card>
